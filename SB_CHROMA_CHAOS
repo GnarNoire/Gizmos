@@ -1,0 +1,792 @@
+set cut_paste_input [stack 0]
+version 13.0 v1
+push $cut_paste_input
+Group {
+ name SB_Chroma_Chaos4
+ selected true
+ xpos 539
+ ypos -138
+ addUserKnob {20 User}
+ addUserKnob {20 channeltransform l "Basic Channel Offset" t "This separates full channels\n\nThese Attributes transform channels by moving the channels stated on slider in opposite directions.  These are traditonal transforms and therefore motion blur is available for them." n 1}
+ addUserKnob {7 rb_offset l "R/B hoizontal offset" R -25 25}
+ rb_offset {{curve x22 9 0}}
+ addUserKnob {7 rgoffset l "G/R horizontal offset" R -25 25}
+ addUserKnob {7 gboffest l "B/G horizontal offest" R -25 25}
+ addUserKnob {20 motionblur_2 l "motion blur settings" n 1}
+ addUserKnob {20 motionblur_1 l "motionblur settings" n 1}
+ motionblur_1 0
+ addUserKnob {41 motionblur l "motionblur for offset" T Transform1.motionblur}
+ addUserKnob {41 shutter T Transform1.shutter}
+ addUserKnob {41 shutteroffset l "shutter offset" T Transform1.shutteroffset}
+ addUserKnob {41 shuttercustomoffset l "" -STARTLINE T Transform1.shuttercustomoffset}
+ addUserKnob {20 endGroup_7 l endGroup n -1}
+ addUserKnob {20 endGroup_5 l endGroup n -1}
+ addUserKnob {20 endGroup_6 l endGroup n -1}
+ addUserKnob {20 endGroup_3 l endGroup n -1}
+ addUserKnob {26 Chaos}
+ addUserKnob {4 chaostype l "Chaos pattern type" t "Linear and Noisy - blend the two through operations and amounts of your choice\n\nLinear only - gives you a boxy only look\n\nNoise- only more organic distortion\n\n" M {"Linear and Noisy merged" "Linear only" Noise ""}}
+ addUserKnob {6 viewchaospattern l "view chaos pattern only" t "view to create distortion pattern desired" +STARTLINE}
+ addUserKnob {41 mix T Merge12.mix}
+ addUserKnob {41 operation t "operation used in Linear and Noisy merged" T Merge12.operation}
+ addUserKnob {20 linearcontrols l "Linear Distortion Controls" n 1}
+ addUserKnob {6 autoanimate l "Auto Animate Linear Chaos" t "creates random patterns automatically each frame" +STARTLINE}
+ autoanimate true
+ addUserKnob {7 seedautolinear l "Auto Animate Seed" t "expression creating auto animation are based on time this changes that time value....\nfor instance you can create a hold by a number of frame by subtracting that number and setting key frames" R -500 500}
+ seedautolinear 425
+ addUserKnob {26 ""}
+ addUserKnob {41 number_1 l number T Gridc.number}
+ addUserKnob {41 size_3 l size T Gridc.size}
+ addUserKnob {41 number T Grid1.number}
+ addUserKnob {41 size_2 l size T Grid1.size}
+ addUserKnob {41 number_2 l number T Grid2a.number}
+ addUserKnob {41 size_4 l size T Grid2a.size}
+ addUserKnob {41 number_3 l number T Grid3b.number}
+ addUserKnob {41 size_5 l size T Grid3b.size}
+ addUserKnob {20 endGroup_4 l endGroup n -1}
+ addUserKnob {20 noisecontrols l "Noise Controls" t "standard noise to control" n 1}
+ noisecontrols 0
+ addUserKnob {41 type T Noise2.type}
+ addUserKnob {41 size_1 l x/ysize T Noise2.size}
+ addUserKnob {41 zoffset l z T Noise2.zoffset}
+ addUserKnob {41 octaves T Noise2.octaves}
+ addUserKnob {41 nyquist l "clip at Nyquist limit" T Noise2.nyquist}
+ addUserKnob {41 lacunarity T Noise2.lacunarity}
+ addUserKnob {41 gain T Noise2.gain}
+ addUserKnob {41 gamma T Noise2.gamma}
+ addUserKnob {20 endGroup_1 l endGroup n -1}
+ addUserKnob {20 horizontalchaos l "Horizontal Chaos" t "the effect is broken in to x,y to have greater control the horizontal effects all x distortions" n 1}
+ addUserKnob {6 mirrored l "mirrored static" +STARTLINE}
+ addUserKnob {7 horuniformchaos l "Uniform Chaos" t "an oxy moron that applys distortion to all the channels dude\n\nMoves everything in y" R -500 500}
+ horuniformchaos {{curve x2 500 -35 -10 x9 -10 x10 500 x14 0}}
+ addUserKnob {41 uv_scale l "R/B CHAOS amount" T IDistort1.uv_scale}
+ addUserKnob {41 BlurAngle l "pattern angle" T horDirBlurWrapper1.BlurAngle}
+ addUserKnob {41 size l "make hor low freq" T horBlur1.size}
+ addUserKnob {41 BlurLength l "hor pattern directionality" T horDirBlurWrapper1.BlurLength}
+ addUserKnob {41 BlurLength_2 l "pho motion blur" t "the distortion is not registered as a transform you may desire to add this for motion blur or just use it to add streaks.  Another option would be to add pixeol motion blur but this was not added because it is so heavy.\n\nps the offsets above could all have traditional motion blur applied" T horDirBlurWrapper2.BlurLength}
+ addUserKnob {6 maskredbypattern l "mask R blur by patter " t "use created distortion pattern as a mask to pho motion blur (dir blur using same angle as  the red  " -STARTLINE}
+ maskredbypattern {{curve K x19 0 1}}
+ addUserKnob {41 BlurLength_3 l "Hor Dir Blur R" T horDirBlurWrapper2.BlurLength}
+ addUserKnob {20 endGroup n -1}
+ addUserKnob {20 verticalchaos l "Vertical Chaos" n 1}
+ addUserKnob {7 verticalchaos_1 l "Uniform Chaos" t "again yes oxymoron applying chaos uniformly across all channels" R -500 500}
+ verticalchaos_1 {{curve x2 -500 35 0 x9 0 x10 -300 140 x14 0}}
+ addUserKnob {41 uv_scale_1 l "R/B CHAOS amount" T IDistort3.uv_scale}
+ addUserKnob {41 BlurLength_1 l "vert pattern directionality" T vertDirBlurWrapper2.BlurLength}
+ addUserKnob {41 BlurAngle_1 l "vert pattern angle" T vertDirBlurWrapper2.BlurAngle}
+ addUserKnob {41 seed l seed/time T Noise2.zoffset}
+ addUserKnob {20 endGroup_2 l endGroup n -1}
+ addUserKnob {6 over l "under original" +STARTLINE}
+ addUserKnob {6 effectonly l "effect only" +STARTLINE}
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  tile_color 0x7171c600
+  label "epression drivin animating"
+  note_font_size 42
+  xpos -917
+  ypos -1439
+  bdwidth 494
+  bdheight 355
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode2
+  tile_color 0x8e8e3800
+  label manual
+  note_font_size 42
+  xpos -1256
+  ypos -1053
+  bdwidth 494
+  bdheight 277
+ }
+ Grid {
+  inputs 0
+  number {{"random (frame/2)*100" i x31 10}}
+  size {{random(frame/-1)*100 i x31 68}}
+  name Gridc2
+  xpos -910
+  ypos -1223
+ }
+ Grid {
+  inputs 0
+  number {{random(frame*3)*200 i}}
+  size {{random(frame/92.4)*100 i}}
+  name Gridc3
+  xpos -806
+  ypos -1247
+ }
+ Grid {
+  inputs 0
+  number {{random(frame)*100 i x2 100 10 x11 0.1 x12 1.85 x14 7}}
+  size {{curve i x2 9 61 x11 0 x12 23}}
+  name Grid3b1
+  xpos -516
+  ypos -1368
+ }
+ Grid {
+  inputs 0
+  number {{random(frame/.2)*100 i}}
+  size {{random(frame*.2)*100 i}}
+  name Grid2a1
+  xpos -725
+  ypos -1283
+ }
+ Invert {
+  name Invert3
+  xpos -626
+  ypos -1289
+ }
+ Merge2 {
+  inputs 2
+  operation difference
+  name Merge13
+  xpos -516
+  ypos -1283
+ }
+ Merge2 {
+  inputs 2
+  operation difference
+  name Merge14
+  xpos -516
+  ypos -1247
+ }
+ Merge2 {
+  inputs 2
+  operation difference
+  name Merge15
+  xpos -516
+  ypos -1223
+ }
+ TimeOffset {
+  time_offset {{parent.seedautolinear}}
+  time ""
+  name TimeOffset1
+  xpos -516
+  ypos -1173
+ }
+ Premult {
+  name Premult2
+  xpos -516
+  ypos -1121
+ }
+set N39940400 [stack 0]
+ Noise {
+  inputs 0
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  center {960 540}
+  name Noise2
+  xpos -29
+  ypos -825
+ }
+ Dot {
+  name Dot19
+  xpos 5
+  ypos -754
+ }
+set N398bb800 [stack 0]
+ Dot {
+  name Dot22
+  xpos 5
+  ypos -677
+ }
+push $N39940400
+ Grid {
+  inputs 0
+  number 4.2
+  size 100
+  name Gridc1
+  xpos -1246
+  ypos -828
+ }
+ Grid {
+  inputs 0
+  name Gridc
+  xpos -1142
+  ypos -852
+ }
+ Grid {
+  inputs 0
+  name Grid3b
+  xpos -852
+  ypos -973
+ }
+ Grid {
+  inputs 0
+  name Grid2a
+  xpos -1061
+  ypos -888
+ }
+ Invert {
+  name Invert2
+  xpos -962
+  ypos -894
+ }
+ Merge2 {
+  inputs 2
+  operation difference
+  name Merge9
+  xpos -852
+  ypos -888
+ }
+ Merge2 {
+  inputs 2
+  operation difference
+  name Merge10
+  xpos -852
+  ypos -852
+ }
+ Merge2 {
+  inputs 2
+  operation difference
+  name Merge11
+  xpos -852
+  ypos -828
+ }
+ Premult {
+  name Premult1
+  xpos -852
+  ypos -804
+ }
+ Switch {
+  inputs 2
+  which {{parent.autoanimate}}
+  name Switch7
+  xpos -516
+  ypos -804
+ }
+ Dot {
+  name Dot14
+  xpos -482
+  ypos -728
+ }
+set N398b8800 [stack 0]
+ Dot {
+  name Dot21
+  xpos -626
+  ypos -677
+ }
+ Dot {
+  name Dot20
+  xpos -626
+  ypos -597
+ }
+push $N398bb800
+push $N398b8800
+ Merge2 {
+  inputs 2
+  operation difference
+  name Merge12
+  xpos -516
+  ypos -620
+ }
+ Switch {
+  inputs 3
+  which {{parent.chaostype i}}
+  name Switch5
+  xpos -516
+  ypos -546
+ }
+ Dot {
+  name Dot23
+  xpos -482
+  ypos -460
+ }
+ Dot {
+  name Dot24
+  xpos -17
+  ypos -380
+ }
+ Shuffle {
+  green red
+  blue red
+  alpha red
+  name Shuffle1
+  label "\[value in]"
+  xpos -51
+  ypos -337
+ }
+ Dot {
+  name Dot13
+  xpos -17
+  ypos -285
+ }
+set N3984e400 [stack 0]
+ Dot {
+  name Dot16
+  xpos -96
+  ypos -257
+ }
+ Dot {
+  name Dot17
+  xpos -96
+  ypos 638
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 373
+  ypos -852
+ }
+ Dot {
+  name Dot1
+  xpos 407
+  ypos -703
+ }
+set N3984d400 [stack 0]
+ Dot {
+  name Dot11
+  xpos 593
+  ypos -703
+ }
+set N3984d000 [stack 0]
+ Dot {
+  name Dot9
+  xpos 749
+  ypos -703
+ }
+set N3984cc00 [stack 0]
+push $N3984e400
+ Blur {
+  name horBlur1
+  label "\[value size]"
+  xpos 59
+  ypos -234
+ }
+ DirBlurWrapper {
+  BlurType linear
+  BlurLayer rgba
+  BlurLength 0
+  BlurAngle 0
+  name horDirBlurWrapper1
+  xpos 59
+  ypos -166
+ }
+ Dot {
+  name Dot12
+  xpos 93
+  ypos -114
+ }
+set N39807c00 [stack 0]
+push $N3984e400
+ Blur {
+  name vertBlur4
+  label "\[value size]"
+  xpos -51
+  ypos -207
+ }
+ DirBlurWrapper {
+  BlurType linear
+  BlurLayer rgba
+  BlurLength 145
+  name vertDirBlurWrapper2
+  xpos -51
+  ypos -17
+ }
+ Dot {
+  name Dot18
+  xpos -17
+  ypos 47
+ }
+set N39807000 [stack 0]
+push $N39807c00
+ Dot {
+  name Dot6
+  xpos 156
+  ypos -114
+ }
+ Dot {
+  name Dot7
+  xpos 320
+  ypos -114
+ }
+set N39806800 [stack 0]
+push $N39806800
+ Dot {
+  name Dot15
+  xpos 320
+  ypos -185
+ }
+ Invert {
+  name Invert1
+  xpos 465
+  ypos -194
+ }
+ Switch {
+  inputs 2
+  which {{parent.mirrored}}
+  name Switch2
+  xpos 465
+  ypos -122
+ }
+set N39805c00 [stack 0]
+push $N3984d000
+ Grade {
+  white {0 0 1 1}
+  black_clamp false
+  name Grade3
+  label B
+  xpos 559
+  ypos -451
+ }
+ Blur {
+  name Blur3
+  label "\[value size]"
+  xpos 559
+  ypos -377
+ }
+ Transform {
+  translate {{parent.Transform1.translate*-1 i} {parent.Transform1.translate*-1 i}}
+  center {1024 778}
+  motionblur {{parent.Transform1.motionblur i}}
+  shutter {{parent.Transform1.shutter i}}
+  shutteroffset centred
+  name Transform2
+  xpos 559
+  ypos -329
+ }
+ Transform {
+  translate {{parent.Transform7.translate*-1 i} {parent.Transform7.translate*-1 i}}
+  center {960 540}
+  shutteroffset centred
+  name Transform6
+  xpos 559
+  ypos -248
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 forward.u
+  from1 -rgba.alpha
+  name Copy2
+  xpos 559
+  ypos -37
+ }
+ IDistort {
+  channels rgba
+  uv {forward.u -forward.v}
+  uv_scale {{parent.IDistort1.uv_scale*-1 i}}
+  name IDistort2
+  xpos 559
+  ypos 7
+ }
+ IDistort {
+  channels rgba
+  uv {forward.u -forward.v}
+  uv_scale {{parent.horuniformchaos i x1 0 186 100 100 0}}
+  name IDistort5
+  xpos 559
+  ypos 62
+ }
+ set C397b3c00 [stack 0]
+ Copy {
+  inputs 2
+  from0 -rgba.alpha
+  from1 rgba.alpha
+  to1 forward.v
+  name Copy3
+  xpos 559
+  ypos 345
+ }
+ IDistort {
+  channels rgba
+  uv {-forward.u forward.v}
+  uv_scale {{parent.verticalchaos_1 i x1 0 500 0 100 40 0}}
+  name IDistort6
+  xpos 559
+  ypos 426
+ }
+ set C397b3400 [stack 0]
+ IDistort {
+  uv {-forward.u forward.v}
+  uv_scale {{parent.IDistort3.uv_scale*-1 i x18 6.5}}
+  name IDistort4
+  xpos 559
+  ypos 513
+ }
+ DirBlurWrapper {
+  inputs 1+1
+  BlurType linear
+  BlurLayer rgba
+  BlurLength 0
+  BlurAngle 90
+  name horDirBlurWrapper3
+  xpos 559
+  ypos 565
+ }
+ Dot {
+  name Dot2
+  xpos 593
+  ypos 670
+ }
+push $N39807c00
+ Constant {
+  inputs 0
+  color 1
+  name Constant2
+  xpos -42
+  ypos 547
+ }
+ Switch {
+  inputs 2
+  which {{parent.maskredbypattern i}}
+  name Switch6
+  xpos 59
+  ypos 571
+ }
+push $N39807000
+ Dot {
+  name Dot25
+  xpos -18
+  ypos 128
+ }
+set N397b1c00 [stack 0]
+ Dot {
+  name Dot4
+  xpos -17
+  ypos 209
+ }
+push $N39805c00
+push $N3984d400
+ Dot {
+  name Dot5
+  xpos 238
+  ypos -703
+ }
+ Grade {
+  white {1 0 0 1}
+  black_clamp false
+  name Grade1
+  label R
+  xpos 204
+  ypos -453
+ }
+ Transform {
+  translate {{parent.rb_offset i} 0}
+  center {1024 778}
+  name Transform1
+  xpos 204
+  ypos -330
+ }
+ Transform {
+  translate {{parent.rgoffset i} 0}
+  center {960 540}
+  motionblur {{parent.Transform1.motionblur i}}
+  shutter {{parent.Transform1.shutter i}}
+  shutteroffset centred
+  name Transform4
+  xpos 204
+  ypos -290
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 forward.u
+  from1 -rgba.alpha
+  name Copy1
+  xpos 204
+  ypos -33
+ }
+ IDistort {
+  channels rgba
+  uv {forward.u -forward.v}
+  uv_scale 84
+  name IDistort1
+  xpos 204
+  ypos 9
+ }
+clone $C397b3c00 {
+  xpos 204
+  ypos 59
+  selected false
+ }
+ Copy {
+  inputs 2
+  from0 -rgba.alpha
+  from1 rgba.alpha
+  to1 forward.v
+  name Copy4
+  xpos 204
+  ypos 322
+ }
+clone $C397b3400 {
+  xpos 204
+  ypos 422
+  selected false
+ }
+ IDistort {
+  channels rgba
+  uv {-forward.u forward.v}
+  uv_scale 64
+  name IDistort3
+  xpos 204
+  ypos 508
+ }
+ DirBlurWrapper {
+  inputs 1+1
+  BlurType linear
+  BlurLayer rgba
+  BlurLength 92
+  BlurAngle {{parent.horDirBlurWrapper1.BlurAngle i}}
+  name horDirBlurWrapper2
+  xpos 204
+  ypos 565
+ }
+ Dot {
+  name Dot3
+  xpos 238
+  ypos 607
+ }
+push $N397b1c00
+push $N39805c00
+push $N3984d400
+ Grade {
+  white {0 1 0 1}
+  black_clamp false
+  name Grade2
+  label G
+  xpos 373
+  ypos -454
+ }
+ Blur {
+  name Blur2
+  label "\[value size]"
+  xpos 373
+  ypos -376
+ }
+ Transform {
+  translate {{parent.Transform4.translate*-1 i} {parent.Transform4.translate*-1 i}}
+  center {960 540}
+  motionblur {{parent.Transform1.motionblur i}}
+  shutter {{parent.Transform1.shutter i}}
+  shutteroffset centred
+  name Transform5
+  xpos 373
+  ypos -289
+ }
+ Transform {
+  translate {{parent.gboffest i} 0}
+  center {960 540}
+  shutteroffset centred
+  name Transform7
+  xpos 373
+  ypos -246
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 forward.u
+  from1 -rgba.alpha
+  name Copy5
+  xpos 373
+  ypos -31
+ }
+clone $C397b3c00 {
+  xpos 373
+  ypos 105
+  selected false
+ }
+ Copy {
+  inputs 2
+  from0 -rgba.alpha
+  from1 rgba.alpha
+  to1 forward.v
+  name Copy6
+  xpos 373
+  ypos 335
+ }
+clone $C397b3400 {
+  xpos 373
+  ypos 432
+  selected false
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge1
+  xpos 373
+  ypos 604
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge2
+  xpos 373
+  ypos 667
+ }
+set N3a6cf800 [stack 0]
+ Merge2 {
+  inputs 2
+  name Merge3
+  xpos 722
+  ypos 784
+ }
+push $N3a6cf800
+ Switch {
+  inputs 2
+  which {{parent.over i}}
+  name Switch1
+  xpos 373
+  ypos 791
+ }
+set N3a6cf000 [stack 0]
+push $N3984cc00
+ Dot {
+  name Dot8
+  xpos 932
+  ypos -703
+ }
+ Merge2 {
+  inputs 2
+  operation minus
+  name Merge4
+  xpos 905
+  ypos 842
+ }
+push $N3a6cf000
+ Switch {
+  inputs 2
+  which {{parent.effectonly}}
+  name Switch3
+  xpos 373
+  ypos 855
+ }
+ Switch {
+  inputs 2
+  which {{parent.viewchaospattern i}}
+  name Switch4
+  xpos 373
+  ypos 954
+ }
+ Output {
+  name Output1
+  xpos 373
+  ypos 1026
+ }
+ Viewer {
+  inputs 2
+  frame 13
+  frame_range 1-40
+  frame_range_lock true
+  input_process false
+  name Viewer1
+  xpos 373
+  ypos 1074
+ }
+ Read {
+  inputs 0
+  file_type dpx
+  file Q:/Comm/imd/imd100/input/imd100_000_140/plates/SHOTS_14/A002_C007_0221FQ.%07d.dpx
+  format "3296 2700 0 0 3296 2700 1 "
+  first 1174
+  last 1556
+  origfirst 1174
+  origlast 1556
+  origset true
+  in_colorspace linear
+  out_colorspace linear
+  name Read1
+  xpos -1376
+  ypos -2417
+ }
+end_group
