@@ -1,0 +1,22 @@
+set cut_paste_input [stack 0]
+version 13.0 v1
+push $cut_paste_input
+NoOp {
+ name SB_RANDOM_NUM_GENERATORv1
+ selected true
+ xpos -2134
+ ypos -1410
+ addUserKnob {20 User}
+ addUserKnob {7 amplitude t "total amount of amplitude \n\nthe max positive number will be this value subtracted by any negative value in offset\n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R 1 20}
+ amplitude 200
+ addUserKnob {7 freq R 0 10}
+ freq 4
+ addUserKnob {7 offset t "Used primarily to also offset into negative values \n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R -20 0}
+ offset -100
+ addUserKnob {7 seed R 1 1000}
+ seed 1
+ addUserKnob {7 output}
+ output {{(((random((frame+seed)/freq))*amplitude)+offset) x36 0.095}}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {26 example l "" +STARTLINE T " -100 offset and 200 amplitude will give a range of(-100 to 100)\n(((random((frame+seed)/freq))*amplitude)+offset)"}
+}
