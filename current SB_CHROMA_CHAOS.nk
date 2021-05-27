@@ -6,7 +6,7 @@ Group {
  tile_color 0xffff00
  selected true
  xpos -810
- ypos -793
+ ypos -792
  addUserKnob {20 BasicOffsets -STARTLINE}
  addUserKnob {7 master_control l "MASTER CONTROL" t "controls all auto animated value" R 0 5}
  master_control {{curve x2 3.66 s0 x10 0 s0 x21 0.3 s0 x24 0 s0 x32 5 s0 x36 1.097811699 s0 x44 0.6 s0 x62 0.2 x75 1 x82 0.6 x95 2.6 x100 0}}
