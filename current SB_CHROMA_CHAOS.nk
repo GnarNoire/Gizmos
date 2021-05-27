@@ -2,41 +2,32 @@ set cut_paste_input [stack 0]
 version 13.0 v1
 push $cut_paste_input
 Group {
- name SB_Chroma_Chaos_V7_1_current
+ name SB_Chroma_Chaos_V7_2_current
  tile_color 0xffff00
  selected true
  xpos -850
- ypos -789
+ ypos -786
  addUserKnob {20 CHROMA_CHAOS l "CHROMA CHAOS" -STARTLINE}
  addUserKnob {7 master_control l "MASTER CONTROL(distort amount*)" t "controls all auto animated value by multiplying by this value" R 0 5}
  master_control {{curve x2 3.66 s0 x10 0 s0 x21 0.3 s0 x24 0 s0 x32 5 s0 x36 1.097811699 s0 x44 0.6 s0 x62 0.2 x75 1 x82 0.6 x95 2.6 x100 0 x111 1}}
- addUserKnob {26 "" +STARTLINE}
+ addUserKnob {26 ""}
  addUserKnob {4 styles l "LINEAR STYLES" M {Blocky "Kalidoscope 1" "Kalidoscope 2" "Kalidoscope 3" "Simple Blocky" "" "" "" "" "" "" "" "" ""}}
  styles "Kalidoscope 2"
  addUserKnob {6 viewchaospattern l "view chaos pattern only" t "view to create distortion pattern desired" -STARTLINE}
- viewchaospattern true
  addUserKnob {7 complrxity l "over all complexity" t "integer 0-4 \nlower complexities are great for utilizing mor of the scanlines depending your preferences of look\n" R 0 4}
- complrxity 4
+ complrxity 1.72
  addUserKnob {6 Linear +STARTLINE}
+ Linear true
  addUserKnob {7 LinearFreq -STARTLINE R 0 2}
  LinearFreq 1
  addUserKnob {6 Grids +STARTLINE}
+ Grids true
  addUserKnob {7 GridFreq t "Smaller numbers change pattern faster\n" -STARTLINE R 0 2}
  GridFreq 1
  addUserKnob {6 Noise +STARTLINE}
  addUserKnob {6 userTex l "User Texture" +STARTLINE}
- addUserKnob {6 bwonly l "B/W results esp useful to bring out details in complex chaos patterns" t "B/W results esp useful to bring out details in complex chaos patterns\n\nsome results can create subpixels which render grey values which can muddy details using this forces binary distortion results" +STARTLINE}
- bwonly true
- addUserKnob {26 "" +STARTLINE}
- addUserKnob {26 scanlinestitle l ScanLines T "furthur distort chaos pattern with these controls"}
- addUserKnob {7 scnlns_freq_mstr l "Scanline Auto Ani Freq Control" t "multiplies current frequency by this number the smaller the number the faster the movement" R 0 1.5}
- scnlns_freq_mstr 1
- addUserKnob {7 Large l Larger_Horizontal R 0 100}
- addUserKnob {7 Large_vert l Larger_Vertical R 0 100}
- addUserKnob {7 med_Hor l Medium_Horizontal R 0 100}
- addUserKnob {7 Medium l Medium_Vertical R 0 100}
- addUserKnob {7 finehor l Fine_Horizontal R 0 100}
- addUserKnob {7 fine l "Fine Vertical" R 0 100}
+ addUserKnob {6 bwonly l "B/W results only (may give more detail depending on complexity)" t "B/W results esp useful to bring out details in complex chaos patterns\n\nsome results can create subpixels which render grey values which can muddy details using this forces binary distortion results" +STARTLINE}
+ addUserKnob {7 seedautolinear l "Total Chaos Distortion Pattern seed" t "expression creating auto animation are based on time this changes that time value....changing freq slightly is better for keyframe values may become convoluted.  IF desired I recommend not animating  \n" R -50 50}
  addUserKnob {26 "" +STARTLINE}
  addUserKnob {20 noisecontrols l "Noise Controls" t "standard noise to control" n 1}
  noisecontrols 0
@@ -49,11 +40,19 @@ Group {
  addUserKnob {41 gain T Noise2.gain}
  addUserKnob {41 gamma T Noise2.gamma}
  addUserKnob {20 endGroup_1 l endGroup n -1}
- addUserKnob {20 linearcontrols l "Linear Distortion Controls" n 1}
- linearcontrols 0
- addUserKnob {7 seedautolinear l "Auto Animate Seed" t "expression creating auto animation are based on time this changes that time value....\nfor instance you can create a hold by a number of frame by subtracting that number and setting key frames" R -500 500}
  addUserKnob {26 ""}
- addUserKnob {20 endGroup_4 l endGroup n -1}
+ addUserKnob {26 scanlinestitle l ScanLines T "  furthur distort chaos pattern with these controls"}
+ addUserKnob {7 scnlns_freq_mstr l "Scanline Auto Ani Freq Control" t "multiplies current frequency by this number the smaller the number the faster the movement" R 0 1.5}
+ scnlns_freq_mstr 1
+ addUserKnob {7 Large l Larger_Horizontal R 0 100}
+ Large 25
+ addUserKnob {7 Large_vert l Larger_Vertical R 0 100}
+ addUserKnob {7 med_Hor l Medium_Horizontal R 0 100}
+ addUserKnob {7 Medium l Medium_Vertical R 0 100}
+ addUserKnob {7 finehor l Fine_Horizontal R 0 100}
+ finehor 12
+ addUserKnob {7 fine l "Fine Vertical" R 0 100}
+ fine 34.5
  addUserKnob {20 channeltransform l "Basic Channel Offset" t "This separates full channels\n\nThese Attributes transform channels by moving the channels stated on slider in opposite directions.  These are traditonal transforms and therefore motion blur is available for them." n 1}
  channeltransform 0
  addUserKnob {7 rb_offset l "R/B hoizontal offset" R -25 25}
@@ -87,6 +86,7 @@ Group {
  addUserKnob {26 Chaos}
  addUserKnob {20 endGroup_3 l endGroup n -1}
  addUserKnob {20 horizontalchaos l "Horizontal Chaos" t "the effect is broken in to x,y to have greater control the horizontal effects all x distortions" n 1}
+ horizontalchaos 0
  addUserKnob {6 mirrored l "mirrored static" +STARTLINE}
  addUserKnob {7 horuniformchaos l "Uniform Chaos" t "an oxy moron that applys distortion to all the channels dude\n\nMoves everything in y" R -500 500}
  horuniformchaos {{Multiply1.value}}
@@ -119,8 +119,8 @@ Group {
  maskredbypattern true
  addUserKnob {20 endGroup n -1}
  addUserKnob {20 verticalchaos l "Vertical Chaos" n 1}
+ verticalchaos 0
  addUserKnob {20 Vertical_Uniform_Chaos_Auto_Animate n 1}
- Vertical_Uniform_Chaos_Auto_Animate 0
  addUserKnob {41 amplitude_4 l amplitude T SB_RANDOM_NUM_GENERATORv22.amplitude}
  addUserKnob {41 freq_4 l freq T SB_RANDOM_NUM_GENERATORv22.freq}
  addUserKnob {41 offset_4 l offset T SB_RANDOM_NUM_GENERATORv22.offset}
@@ -141,13 +141,9 @@ Group {
  addUserKnob {41 BlurLength_1 l "vert pattern directionality" T vertDirBlurWrapper2.BlurLength}
  addUserKnob {41 BlurAngle_1 l "vert pattern angle" T vertDirBlurWrapper2.BlurAngle}
  addUserKnob {20 endGroup_2 l endGroup n -1}
- addUserKnob {26 composite l COMPOSITE}
- addUserKnob {6 over l "under original" +STARTLINE}
- addUserKnob {6 effectonly l "effect only" +STARTLINE}
- addUserKnob {7 layeroriginal}
- addUserKnob {41 operation_1 l operation -STARTLINE T Merge24.operation}
  addUserKnob {26 ""}
  addUserKnob {20 Motion_Blur_settings l "Motion _Blur_settings" n 1}
+ Motion_Blur_settings 0
  addUserKnob {26 Fast_Global_Motion_Blur -STARTLINE T "(time blur)"}
  addUserKnob {41 divisions T TimeBlur1.divisions}
  addUserKnob {41 shutter_1 l shutter T TimeBlur1.shutter}
@@ -155,17 +151,16 @@ Group {
  addUserKnob {26 ""}
  addUserKnob {26 ExpensiveMoBlur l "Expensive Motion Blur " t "Expensive Motion Blur Vector Generator" T "\n"}
  addUserKnob {6 Expensive_Motion_Blur l "Turn On Expensive Motion Blur" +STARTLINE}
- Expensive_Motion_Blur {{curve K x54 0 x73 1}}
  addUserKnob {6 onlyedges l "Blur Only Edges" t "Blur Only Edges add only change " +STARTLINE}
  onlyedges true
  addUserKnob {6 MoBlurChaosMask l "Mask By Chaos Pattern" +STARTLINE}
- MoBlurChaosMask true
  addUserKnob {41 uv l "uv channels" T VectorBlur1.uv}
  addUserKnob {7 Amount R 1 100}
  Amount {{curve x89 25.5 x100 1}}
  addUserKnob {41 vectorDetailLocal l "Vector Detail" T VectorGenerator1.vectorDetailLocal}
  addUserKnob {26 ""}
  addUserKnob {20 motionblur_setting_basicchanel_ofsets l "motionblur settings(only effects Basic channel offsets)" n 1}
+ motionblur_setting_basicchanel_ofsets 0
  addUserKnob {41 motionblur l "motionblur for offset" T Transform1.motionblur}
  addUserKnob {41 shutter T Transform1.shutter}
  addUserKnob {41 shutteroffset l "shutter offset" T Transform1.shutteroffset}
@@ -173,7 +168,13 @@ Group {
  addUserKnob {20 endGroup_7 l endGroup n -1}
  addUserKnob {20 endGroup_12 l endGroup n -1}
  addUserKnob {26 ""}
+ addUserKnob {26 composite l COMPOSITE}
+ addUserKnob {6 over l "under original" +STARTLINE}
+ addUserKnob {6 effectonly l "effect only" +STARTLINE}
+ addUserKnob {7 layeroriginal}
+ addUserKnob {41 operation_1 l operation -STARTLINE T Merge24.operation}
  addUserKnob {20 rnd_num l "use to link to properties to auto animate to your likings" t "use to link to properties to auto animate to your likings" n 1}
+ rnd_num 0
  addUserKnob {26 gen4 l 4}
  addUserKnob {41 amplitude_3 l amplitude T SB_RANDOM_NUM_GENERATORv10.amplitude}
  addUserKnob {41 freq_3 l freq T SB_RANDOM_NUM_GENERATORv10.freq}
@@ -191,8 +192,8 @@ Group {
   tile_color 0xaaaaaa00
   label "rando num generators in Gizmo\n"
   note_font_size 42
-  xpos 1454
-  ypos 2279
+  xpos 2553
+  ypos 2255
   bdwidth 1712
   bdheight 1202
  }
@@ -202,8 +203,8 @@ Group {
   tile_color 0x388e8e00
   label EMBEDDED
   note_font_size 42
-  xpos 1729
-  ypos 2477
+  xpos 2828
+  ypos 2453
   bdwidth 502
   bdheight 614
   z_order 1
@@ -211,38 +212,38 @@ Group {
  Input {
   inputs 0
   name input
-  xpos 620
-  ypos -225
+  xpos 977
+  ypos -434
  }
  Dot {
   name Dot37
-  xpos 654
-  ypos -126
+  xpos 1011
+  ypos -181
  }
-set N769e0c00 [stack 0]
+set N44a30c00 [stack 0]
  Dot {
   name Dot1
-  xpos 654
-  ypos -30
+  xpos 1011
+  ypos -46
  }
-set N769e0800 [stack 0]
+set N44a30800 [stack 0]
  Dot {
   name Dot11
-  xpos 764
-  ypos -30
+  xpos 1166
+  ypos -46
  }
-set N769e0400 [stack 0]
+set N44a30400 [stack 0]
  Dot {
   name Dot9
-  xpos 1094
-  ypos -30
+  xpos 1634
+  ypos -46
  }
-set N2db17c00 [stack 0]
+set N45107c00 [stack 0]
  Saturation {
   saturation 1.18
   name Saturation2
-  xpos 1390
-  ypos 1023
+  xpos 2067
+  ypos 1447
  }
  NoOp {
   inputs 0
@@ -289,26 +290,16 @@ set N2db17c00 [stack 0]
   value {{parent.SB_RANDOM_NUM_GENERATORv6.output*master_control}}
   name Multiply3
   label "uniform auto animate"
-  xpos 1940
-  ypos 2547
+  xpos 3039
+  ypos 2523
  }
  Multiply {
   inputs 0
   value {{parent.SB_RANDOM_NUM_GENERATORv7.output*master_control}}
   name Multiply1
   label _-_uniformChaos_autoani
-  xpos 1830
-  ypos 2691
- }
- Expression {
-  inputs 0
-  expr0 isnan(r)
-  name Expression1
-  tile_color 0xffffff
-  label "Show Me NAN Pixels"
-  note_font_size 21
-  xpos -700
-  ypos 669
+  xpos 2929
+  ypos 2667
  }
  Tile {
   inputs 0
@@ -375,25 +366,6 @@ set N2db17c00 [stack 0]
   addUserKnob {7 offset t "Used primarily to also offset into negative values \n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R -20 0}
   addUserKnob {7 seed R 1 1000}
   seed 175
-  addUserKnob {7 output}
-  output {{(((random((frame+seed)/(freq*GridFreq)))*amplitude)+offset) x36 0.095}}
-  addUserKnob {26 ""}
-  addUserKnob {26 example l "" +STARTLINE T " -100 offset and 200 amplitude will give a range of(-100 to 100)\n(((random((frame+seed)/freq))*amplitude)+offset)"}
- }
- NoOp {
-  inputs 0
-  name SB_RANDOM_NUM_GENERATORv13
-  label "number\n"
-  xpos -344
-  ypos -3075
-  addUserKnob {20 User}
-  addUserKnob {7 amplitude t "total amount of amplitude \n\nthe max positive number will be this value subtracted by any negative value in offset\n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R 1 20}
-  amplitude 80
-  addUserKnob {7 freq R 0 10}
-  freq 3.8
-  addUserKnob {7 offset t "Used primarily to also offset into negative values \n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R -20 0}
-  addUserKnob {7 seed R 1 1000}
-  seed 135
   addUserKnob {7 output}
   output {{(((random((frame+seed)/(freq*GridFreq)))*amplitude)+offset) x36 0.095}}
   addUserKnob {26 ""}
@@ -557,8 +529,8 @@ set N2db17c00 [stack 0]
   name SB_RANDOM_NUM_GENERATORv9
   label "R/B Basic Channel Offset\n_-_EMBEDDED"
   note_font Verdana
-  xpos 1720
-  ypos 2925
+  xpos 2819
+  ypos 2901
   addUserKnob {20 User}
   addUserKnob {7 amplitude t "total amount of amplitude \n\nthe max positive number will be this value subtracted by any negative value in offset\n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R 1 20}
   amplitude 100
@@ -577,8 +549,8 @@ set N2db17c00 [stack 0]
   inputs 0
   name SB_RANDOM_NUM_GENERATORv8
   label "EMBEDDEDl_-_R/B Vert CHAOS"
-  xpos 1720
-  ypos 2835
+  xpos 2819
+  ypos 2811
   addUserKnob {20 User}
   addUserKnob {7 amplitude t "total amount of amplitude \n\nthe max positive number will be this value subtracted by any negative value in offset\n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R 1 20}
   amplitude 100
@@ -597,8 +569,8 @@ set N2db17c00 [stack 0]
   inputs 0
   name SB_RANDOM_NUM_GENERATORv7
   label EMBEDDED
-  xpos 1720
-  ypos 2691
+  xpos 2819
+  ypos 2667
   addUserKnob {20 User}
   addUserKnob {7 amplitude t "total amount of amplitude \n\nthe max positive number will be this value subtracted by any negative value in offset\n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R 1 20}
   amplitude 400
@@ -618,26 +590,26 @@ set N2db17c00 [stack 0]
   name Dot32
   label "make master AMP and Freq"
   note_font_size 41
-  xpos 1644
-  ypos 3042
+  xpos 2743
+  ypos 3018
  }
-set N2dac9800 [stack 0]
+set N450c2000 [stack 0]
  Multiply {
   value {{parent.LinearFreq}}
   name Multiply5
   label "Linear Freq"
   note_font_size 31
-  xpos 1830
-  ypos 3114
+  xpos 2929
+  ypos 3090
  }
-push $N2dac9800
+push $N450c2000
  Multiply {
   value {{parent.GridFreq}}
   name Multiply4
   label "GRID FREQ"
   note_font_size 31
-  xpos 1610
-  ypos 3114
+  xpos 2709
+  ypos 3090
  }
  Merge2 {
   inputs 0
@@ -645,15 +617,15 @@ push $N2dac9800
   name Merge5
   label "\[value mix]_-_MASTER CONTROL"
   note_font_size 31
-  xpos 2270
-  ypos 3131
+  xpos 3369
+  ypos 3107
  }
  NoOp {
   inputs 0
   name SB_RANDOM_NUM_GENERATORv10
   label "Embedded _-_B/G Horizontal Basic Offset"
-  xpos 1720
-  ypos 3027
+  xpos 2819
+  ypos 3003
   addUserKnob {20 User}
   addUserKnob {7 amplitude t "total amount of amplitude \n\nthe max positive number will be this value subtracted by any negative value in offset\n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R 1 20}
   amplitude 30
@@ -672,8 +644,8 @@ push $N2dac9800
   inputs 0
   name SB_RANDOM_NUM_GENERATORv22
   label "_-_vertical uniform_-_EMBEDDED"
-  xpos 1720
-  ypos 2739
+  xpos 2819
+  ypos 2715
   addUserKnob {20 User}
   addUserKnob {7 amplitude t "total amount of amplitude \n\nthe max positive number will be this value subtracted by any negative value in offset\n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R 1 20}
   amplitude 100
@@ -692,8 +664,8 @@ push $N2dac9800
   inputs 0
   name SB_RANDOM_NUM_GENERATORv6
   label EMBEDDED
-  xpos 1720
-  ypos 2547
+  xpos 2819
+  ypos 2523
   addUserKnob {20 User}
   addUserKnob {7 amplitude t "total amount of amplitude \n\nthe max positive number will be this value subtracted by any negative value in offset\n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R 1 20}
   amplitude 100
@@ -712,8 +684,8 @@ push $N2dac9800
   inputs 0
   name SB_RANDOM_NUM_GENERATORv5
   label EMBEDDED
-  xpos 1720
-  ypos 2619
+  xpos 2819
+  ypos 2595
   addUserKnob {20 User}
   addUserKnob {7 amplitude t "total amount of amplitude \n\nthe max positive number will be this value subtracted by any negative value in offset\n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R 1 20}
   amplitude 300
@@ -733,37 +705,8 @@ push $N2dac9800
   value {{parent.SB_RANDOM_NUM_GENERATORv5.output*master_control}}
   name Multiply2
   label "_-_RB auto animate"
-  xpos 1940
-  ypos 2619
- }
- Dot {
-  inputs 0
-  name Dot57
-  label _IMporovements
-  note_font_size 40
-  xpos 874
-  ypos 3762
- }
- Dot {
-  name Dot30
-  label "_make complexity for each_noise sstylea"
-  note_font_size 60
-  xpos 874
-  ypos 3954
- }
- Dot {
-  name Dot66
-  label "_-_Could eplace with sliders for each with the connect to integer multiply nodes"
-  note_font_size 60
-  xpos 874
-  ypos 4218
- }
- Dot {
-  name Dot58
-  label "_Add all motion data from distortion to source"
-  note_font_size 40
-  xpos 874
-  ypos 4530
+  xpos 3039
+  ypos 2595
  }
  Grid {
   inputs 0
@@ -774,7 +717,7 @@ push $N2dac9800
   xpos 96
   ypos -3001
  }
-set N2de74800 [stack 0]
+set N7b347800 [stack 0]
  Dot {
   name Dot28
   xpos -310
@@ -815,7 +758,7 @@ set N2de74800 [stack 0]
    xpos 403
    ypos 198
   }
-set N2de3b000 [stack 0]
+set N7b346400 [stack 0]
   Reformat {
    type scale
    scale {{parent.ratio}}
@@ -853,8 +796,8 @@ set N2de3b000 [stack 0]
    xpos 479
    ypos 298
   }
-set N2de39c00 [stack 0]
-push $N2de3b000
+set N7b345000 [stack 0]
+push $N7b346400
   ShuffleCopy {
    inputs 2
    red red
@@ -872,7 +815,7 @@ push $N2de3b000
    xpos 369
    ypos 326
   }
-push $N2de3b000
+push $N7b346400
   Dissolve {
    inputs 2
    channels rgba
@@ -886,7 +829,7 @@ push $N2de3b000
    xpos 259
    ypos 350
   }
-push $N2de39c00
+push $N7b345000
   Viewer {
    frame_range 1-100
    name Viewer1
@@ -903,7 +846,7 @@ push $N2de39c00
   xpos 316
   ypos -2751
  }
-push $N2de74800
+push $N7b347800
  Grid {
   inputs 0
   number {{parent.SB_RANDOM_NUM_GENERATORv13.output}}
@@ -934,7 +877,7 @@ push $N2de74800
   xpos 130
   ypos -2646
  }
-set N2ddcb000 [stack 0]
+set N7b2f2400 [stack 0]
  Merge2 {
   inputs 2
   operation difference
@@ -948,7 +891,7 @@ set N2ddcb000 [stack 0]
   xpos 96
   ypos -2506
  }
-set N2ddca800 [stack 0]
+set N7b2f1c00 [stack 0]
  TimeOffset {
   time_offset {{parent.seedautolinear}}
   time ""
@@ -967,156 +910,6 @@ set N2ddca800 [stack 0]
   name Premult2
   xpos 96
   ypos -2175
- }
- Expression {
-  inputs 0
-  temp_name0 Rx
-  temp_expr0 SB_Random_number_gen2.output
-  temp_name1 Gy
-  temp_expr1 SB_Random_number_gen1.output
-  temp_name2 Bx
-  temp_expr2 SB_Random_number_gen3.output
-  expr0 "(sin(x/Rx) + .7)/2 "
-  expr1 "(sin(x/Gy) +.7)/2 "
-  expr2 "(sin(y/Bx) +.7)/2 "
-  name Expression3
-  label "_-_scanlines 2"
-  xpos -1910
-  ypos -303
- }
- Posterize {
-  Colors 2
-  name Posterize4
-  xpos -1910
-  ypos -231
- }
- Expression {
-  inputs 0
-  temp_name0 ffrr
-  temp_expr0 SB_Random_number_gen12.output
-  temp_name1 fgg
-  temp_expr1 SB_Random_number_gen11.output
-  temp_name2 fbb
-  temp_expr2 SB_Random_number_gen10.output
-  expr0 "(sin(x/ffrr) + .7)/2 "
-  expr1 "(sin(y/fgg) +.7)/2 "
-  expr2 "(sin(x/fbb) +.7)/2 "
-  name Expression5
-  label _-_scanlines
-  xpos -704
-  ypos -664
- }
- Posterize {
-  Colors 2
-  name Posterize3
-  xpos -704
-  ypos -591
- }
- Noise {
-  inputs 0
-  size 180
-  zoffset {{curve l x21 3.66 x44 0.58}}
-  nyquist false
-  gain 1
-  gamma 0
-  center {960 540}
-  name Noise2
-  note_font_size 21
-  xpos -1140
-  ypos -1311
- }
-push $N2ddca800
- Dot {
-  name Dot71
-  xpos -163
-  ypos -2503
- }
- Tile {
-  rows 2
-  mirrorRows true
-  columns 2
-  mirrorCols true
-  name Tile5
-  xpos -197
-  ypos -2431
- }
-push $N2ddca800
- Merge2 {
-  inputs 2
-  operation difference
-  name Merge33
-  label "\[value mix]"
-  xpos -197
-  ypos -2254
- }
-set N2dd3fc00 [stack 0]
- Tile {
-  rows 2
-  mirrorRows true
-  columns 2
-  mirrorCols true
-  name Tile6
-  xpos -375
-  ypos -2248
- }
- Dot {
-  name Dot77
-  xpos -341
-  ypos -2151
- }
-push $N2dd3fc00
- Merge2 {
-  inputs 2
-  operation difference
-  name Merge34
-  label "\[value mix]"
-  xpos -197
-  ypos -2093
- }
-push $N2dd3fc00
-push $N2ddca800
- Dot {
-  name Dot76
-  xpos 267
-  ypos -2503
- }
-push $N2ddcb000
- Dot {
-  name Dot74
-  xpos 472
-  ypos -2646
- }
-push $N2de74800
- Dot {
-  name Dot72
-  xpos 819
-  ypos -2998
- }
- Dot {
-  name Dot73
-  xpos 819
-  ypos -2339
- }
- Switch {
-  inputs 5
-  which {{parent.complrxity.main}}
-  name Switch16
-  label "\[value which]"
-  xpos 233
-  ypos -2004
- }
- set C2dd3dc00 [stack 0]
- Dot {
-  name Dot56
-  xpos 267
-  ypos -1863
- }
- Dot {
-  name Dot67
-  label _-_GRIDS
-  note_font_size 40
-  xpos 267
-  ypos -1839
  }
  CheckerBoard2 {
   inputs 0
@@ -1183,7 +976,7 @@ push $N2de74800
    xpos 403
    ypos 198
   }
-set N2dcf7800 [stack 0]
+set N7b25f800 [stack 0]
   Reformat {
    type scale
    scale {{parent.ratio}}
@@ -1221,8 +1014,8 @@ set N2dcf7800 [stack 0]
    xpos 479
    ypos 298
   }
-set N2dcf6400 [stack 0]
-push $N2dcf7800
+set N7b25e400 [stack 0]
+push $N7b25f800
   ShuffleCopy {
    inputs 2
    red red
@@ -1240,7 +1033,7 @@ push $N2dcf7800
    xpos 369
    ypos 326
   }
-push $N2dcf7800
+push $N7b25f800
   Dissolve {
    inputs 2
    channels rgba
@@ -1254,7 +1047,7 @@ push $N2dcf7800
    xpos 259
    ypos 350
   }
-push $N2dcf6400
+push $N7b25e400
   Viewer {
    frame_range 1-100
    name Viewer1
@@ -1262,20 +1055,20 @@ push $N2dcf6400
    ypos 349
   }
  end_group
-set N2dd0b200 [stack 0]
+set N7b290100 [stack 0]
  Mirror2 {
   flop true
   name Mirror2_4
   xpos -3450
   ypos -5457
  }
-set N2dcf4c00 [stack 0]
+set N7b25cc00 [stack 0]
  Dot {
   name Dot26
   xpos -3416
   ypos -5334
  }
-push $N2dd0b200
+push $N7b290100
  Merge2 {
   inputs 2
   operation multiply
@@ -1284,7 +1077,7 @@ push $N2dd0b200
   xpos -3780
   ypos -5343
  }
-set N2dcf4400 [stack 0]
+set N7b25c400 [stack 0]
  Dot {
   name Dot38
   label ".>>>.>>>>>good scatter\n"
@@ -1300,14 +1093,14 @@ set N2dcf4400 [stack 0]
   xpos -3780
   ypos -5151
  }
-set N2dc8b800 [stack 0]
+set N7b203800 [stack 0]
  Crop {
   box {0 0 {input.width} {input.height}}
   name Crop2
   xpos -3780
   ypos -4977
  }
-set N2dc8b400 [stack 0]
+set N7b203400 [stack 0]
  CheckerBoard2 {
   inputs 0
   boxsize {{parent.SB_RANDOM_NUM_GENERATORv25.output}}
@@ -1322,7 +1115,7 @@ set N2dc8b400 [stack 0]
   xpos -3230
   ypos -3801
  }
-set N2dc8b000 [stack 0]
+set N7b203000 [stack 0]
  Group {
   name Scatterize4
   xpos -3230
@@ -1345,7 +1138,7 @@ set N2dc8b000 [stack 0]
    xpos 403
    ypos 226
   }
-set N2dc8a800 [stack 0]
+set N7b202800 [stack 0]
   Reformat {
    type scale
    scale {{parent.ratio}}
@@ -1383,8 +1176,8 @@ set N2dc8a800 [stack 0]
    xpos 479
    ypos 300
   }
-set N2dc89400 [stack 0]
-push $N2dc8a800
+set N7b201400 [stack 0]
+push $N7b202800
   ShuffleCopy {
    inputs 2
    red red
@@ -1402,7 +1195,7 @@ push $N2dc8a800
    xpos 369
    ypos 326
   }
-push $N2dc8a800
+push $N7b202800
   Dissolve {
    inputs 2
    channels rgba
@@ -1416,7 +1209,7 @@ push $N2dc8a800
    xpos 259
    ypos 352
   }
-push $N2dc89400
+push $N7b201400
   Viewer {
    frame_range 1-100
    name Viewer1
@@ -1425,7 +1218,7 @@ push $N2dc89400
    ypos 324
   }
  end_group
-set N2dc6b900 [stack 0]
+set N7b21c800 [stack 0]
  Merge2 {
   inputs 2
   operation exclusion
@@ -1434,17 +1227,20 @@ set N2dc6b900 [stack 0]
   xpos -3230
   ypos -3351
  }
-set N2dc2b800 [stack 0]
-push $N2dc2b800
-push $N2dc2b800
-push $N2dc6b900
-push $N2dc8b000
-clone $C2dd3dc00 {
+set N7b197800 [stack 0]
+push $N7b197800
+push $N7b197800
+push $N7b21c800
+push $N7b203000
+ Switch {
   inputs 5
+  which {{parent.complrxity.main}}
+  name Switch16
+  label "\[value which]"
   xpos -2790
-  ypos -3159
-  selected false
+  ypos -3162
  }
+ set C7b197400 [stack 0]
  Dot {
   name Dot20
   label "_simple blocky"
@@ -1496,7 +1292,7 @@ clone $C2dd3dc00 {
    xpos 403
    ypos 226
   }
-set N2dc2a000 [stack 0]
+set N7b196000 [stack 0]
   Reformat {
    type scale
    scale {{parent.ratio}}
@@ -1534,8 +1330,8 @@ set N2dc2a000 [stack 0]
    xpos 479
    ypos 300
   }
-set N2dc28c00 [stack 0]
-push $N2dc2a000
+set N7b194c00 [stack 0]
+push $N7b196000
   ShuffleCopy {
    inputs 2
    red red
@@ -1553,7 +1349,7 @@ push $N2dc2a000
    xpos 369
    ypos 326
   }
-push $N2dc2a000
+push $N7b196000
   Dissolve {
    inputs 2
    channels rgba
@@ -1567,7 +1363,7 @@ push $N2dc2a000
    xpos 259
    ypos 352
   }
-push $N2dc28c00
+push $N7b194c00
   Viewer {
    frame_range 1-100
    name Viewer1
@@ -1584,7 +1380,7 @@ push $N2dc28c00
   xpos -4440
   ypos -4473
  }
-push $N2dc8b400
+push $N7b203400
  Merge2 {
   inputs 2
   operation exclusion
@@ -1593,19 +1389,19 @@ push $N2dc8b400
   xpos -3780
   ypos -4479
  }
-set N2dbbac00 [stack 0]
+set N4523ec00 [stack 0]
  Dot {
   name Dot51
   xpos -3746
   ypos -4230
  }
-set N2dbba800 [stack 0]
+set N4523e800 [stack 0]
  Clamp {
   name Clamp3
   xpos -3780
   ypos -4095
  }
-set N2dbba400 [stack 0]
+set N4523e400 [stack 0]
  Mirror2 {
   flop true
   name Mirror2_3
@@ -1617,7 +1413,7 @@ set N2dbba400 [stack 0]
   xpos -3966
   ypos -4014
  }
-push $N2dbba400
+push $N4523e400
  Merge2 {
   inputs 2
   operation multiply
@@ -1626,20 +1422,20 @@ push $N2dbba400
   xpos -3780
   ypos -4023
  }
-set N2dbb9800 [stack 0]
+set N4523d800 [stack 0]
  Clamp {
   name Clamp1
   xpos -3780
   ypos -3855
  }
-set N2dbb9400 [stack 0]
+set N4523d400 [stack 0]
  Mirror2 {
   flip true
   name Mirror2_5
   xpos -3560
   ypos -3849
  }
-set N2dbb9000 [stack 0]
+set N4523d000 [stack 0]
  CheckerBoard2 {
   inputs 0
   boxsize 100
@@ -1680,7 +1476,7 @@ set N2dbb9000 [stack 0]
    xpos 403
    ypos 198
   }
-set N462afc00 [stack 0]
+set N451cfc00 [stack 0]
   Reformat {
    type scale
    scale {{parent.ratio}}
@@ -1718,8 +1514,8 @@ set N462afc00 [stack 0]
    xpos 479
    ypos 298
   }
-set N462ae800 [stack 0]
-push $N462afc00
+set N451ce800 [stack 0]
+push $N451cfc00
   ShuffleCopy {
    inputs 2
    red red
@@ -1737,7 +1533,7 @@ push $N462afc00
    xpos 369
    ypos 326
   }
-push $N462afc00
+push $N451cfc00
   Dissolve {
    inputs 2
    channels rgba
@@ -1751,7 +1547,7 @@ push $N462afc00
    xpos 259
    ypos 350
   }
-push $N462ae800
+push $N451ce800
   Viewer {
    frame_range 1-100
    name Viewer1
@@ -1759,7 +1555,7 @@ push $N462ae800
    ypos 349
   }
  end_group
-set N462d0100 [stack 0]
+set N451e4f00 [stack 0]
  Glint {
   repeat 4
   length 54
@@ -1845,8 +1641,8 @@ set N462d0100 [stack 0]
    ypos -151
   }
  end_group
-set N46246400 [stack 0]
-push $N46246400
+set N1c873200 [stack 0]
+push $N1c873200
  Copy {
   inputs 2
   from0 rgba.red
@@ -1870,19 +1666,19 @@ push $N46246400
   ypos -4929
   dope_sheet true
  }
-set N4623a800 [stack 0]
+set N1c862800 [stack 0]
  Dot {
   name Dot27
   xpos -1106
   ypos -4614
  }
-push $N4623a800
+push $N1c862800
  Dot {
   name Dot10
   xpos -1436
   ypos -4926
  }
-set N4623a000 [stack 0]
+set N1c862000 [stack 0]
  Mirror2 {
   flop true
   name Mirror2_1
@@ -1897,8 +1693,8 @@ set N4623a000 [stack 0]
   xpos -1470
   ypos -4383
  }
-set N46239800 [stack 0]
-push $N46239800
+set N1c861800 [stack 0]
+push $N1c861800
  Mirror2 {
   flip true
   name Mirror2_2
@@ -1913,7 +1709,7 @@ push $N46239800
   xpos -1470
   ypos -4215
  }
-set N46239000 [stack 0]
+set N1c861000 [stack 0]
  Dot {
   name Dot62
   xpos -1546
@@ -1934,9 +1730,9 @@ set N46239000 [stack 0]
   xpos -1436
   ypos -3846
  }
-set N46238400 [stack 0]
-push $N2dbb9400
-push $N2dbb9000
+set N1c860400 [stack 0]
+push $N4523d400
+push $N4523d000
  Merge2 {
   inputs 2
   operation difference
@@ -1956,7 +1752,7 @@ push $N2dbb9000
   xpos -3780
   ypos -3567
  }
-set N461e3400 [stack 0]
+set N1c7ff400 [stack 0]
  Remove {
   operation keep
   channels rgba
@@ -1964,7 +1760,7 @@ set N461e3400 [stack 0]
   xpos -3780
   ypos -3513
  }
-set N461e3000 [stack 0]
+set N1c7ff000 [stack 0]
  Dot {
   name Dot41
   xpos -4846
@@ -1978,7 +1774,7 @@ set N461e3000 [stack 0]
   xpos -4880
   ypos -3159
  }
-set N461e2800 [stack 0]
+set N1c7fe800 [stack 0]
  Mirror2 {
   flip true
   flop true
@@ -1995,7 +1791,7 @@ set N461e2800 [stack 0]
   xpos -5100
   ypos -3119
  }
-push $N461e2800
+push $N1c7fe800
  Merge2 {
   inputs 2
   operation exclusion
@@ -2004,8 +1800,8 @@ push $N461e2800
   xpos -5100
   ypos -3063
  }
-push $N461e3000
-push $N2dbb9800
+push $N1c7ff000
+push $N4523d800
  Mirror2 {
   flip true
   flop true
@@ -2013,7 +1809,7 @@ push $N2dbb9800
   xpos -4000
   ypos -3921
  }
-push $N2dbb9800
+push $N4523d800
  Merge2 {
   inputs 2
   operation difference
@@ -2022,7 +1818,7 @@ push $N2dbb9800
   xpos -4000
   ypos -3831
  }
-push $N2dbbac00
+push $N4523ec00
  Dot {
   name Dot70
   xpos -3966
@@ -2034,7 +1830,7 @@ push $N2dbbac00
   xpos -4000
   ypos -4377
  }
-push $N2dbbac00
+push $N4523ec00
  Dot {
   name Dot69
   xpos -3856
@@ -2048,7 +1844,7 @@ push $N2dbbac00
   xpos -4000
   ypos -4311
  }
-push $N2dc8b800
+push $N7b203800
  Mirror2 {
   flip true
   flop true
@@ -2056,7 +1852,7 @@ push $N2dc8b800
   xpos -4000
   ypos -5145
  }
-push $N2dc8b800
+push $N7b203800
  Merge2 {
   inputs 2
   operation difference
@@ -2065,7 +1861,7 @@ push $N2dc8b800
   xpos -4000
   ypos -5007
  }
-clone $C2dd3dc00 {
+clone $C7b197400 {
   inputs 5
   xpos -4880
   ypos -2679
@@ -2078,7 +1874,7 @@ clone $C2dd3dc00 {
   xpos -4846
   ypos -2550
  }
-push $N461e3000
+push $N1c7ff000
  Tile {
   rows 2
   mirrorRows true
@@ -2095,7 +1891,7 @@ push $N461e3000
   xpos -3780
   ypos -3105
  }
-push $N461e3400
+push $N1c7ff400
  Merge2 {
   inputs 2
   operation difference
@@ -2104,14 +1900,14 @@ push $N461e3400
   xpos -3670
   ypos -3111
  }
-push $N461e3400
-push $N2dbbac00
+push $N1c7ff400
+push $N4523ec00
  Dot {
   name Dot65
   xpos -3746
   ypos -4398
  }
-set N4617a000 [stack 0]
+set N1c7aa000 [stack 0]
  Mirror2 {
   flip true
   flop true
@@ -2119,7 +1915,7 @@ set N4617a000 [stack 0]
   xpos -3670
   ypos -4401
  }
-push $N4617a000
+push $N1c7aa000
  Merge2 {
   inputs 2
   operation difference
@@ -2128,20 +1924,20 @@ push $N4617a000
   xpos -3670
   ypos -4383
  }
-push $N2dcf4400
+push $N7b25c400
  Dot {
   name Dot64
   xpos -3636
   ypos -5238
  }
-set N46179400 [stack 0]
+set N1c7a9400 [stack 0]
  Mirror2 {
   flip true
   name Mirror2_6
   xpos -3560
   ypos -5145
  }
-push $N46179400
+push $N1c7a9400
  Merge2 {
   inputs 2
   operation difference
@@ -2150,9 +1946,9 @@ push $N46179400
   xpos -3670
   ypos -5079
  }
-set N46178c00 [stack 0]
-push $N2dcf4400
-clone $C2dd3dc00 {
+set N1c7a8c00 [stack 0]
+push $N7b25c400
+clone $C7b197400 {
   inputs 5
   xpos -3450
   ypos -2943
@@ -2165,17 +1961,17 @@ clone $C2dd3dc00 {
   xpos -3416
   ypos -2910
  }
-push $N46238400
-push $N46239000
+push $N1c860400
+push $N1c861000
  Dot {
   name Dot61
   xpos -1656
   ypos -4062
  }
-push $N46239800
-push $N46246400
-push $N462d0100
-clone $C2dd3dc00 {
+push $N1c861800
+push $N1c873200
+push $N451e4f00
+clone $C7b197400 {
   inputs 5
   xpos -1360
   ypos -3855
@@ -2188,14 +1984,14 @@ clone $C2dd3dc00 {
   xpos -1326
   ypos -3462
  }
-push $N2dbba800
-push $N4623a000
+push $N4523e800
+push $N1c862000
  Dot {
   name Dot52
   xpos -3086
   ypos -4926
  }
-set N46127000 [stack 0]
+set N1c75b000 [stack 0]
  Merge2 {
   inputs 2
   operation difference
@@ -2204,8 +2000,8 @@ set N46127000 [stack 0]
   xpos -3120
   ypos -4239
  }
-push $N46127000
-push $N2dc8b400
+push $N1c75b000
+push $N7b203400
  Merge2 {
   inputs 2
   operation exclusion
@@ -2214,13 +2010,13 @@ push $N2dc8b400
   xpos -3450
   ypos -4527
  }
-push $N2dcf4c00
+push $N7b25cc00
  Dot {
   name Dot60
   xpos -3416
   ypos -5022
  }
-push $N46127000
+push $N1c75b000
  Merge2 {
   inputs 2
   operation difference
@@ -2229,9 +2025,9 @@ push $N46127000
   xpos -3340
   ypos -4431
  }
-push $N46246400
-push $N462d0100
-clone $C2dd3dc00 {
+push $N1c873200
+push $N451e4f00
+clone $C7b197400 {
   inputs 5
   xpos -3120
   ypos -4095
@@ -2252,20 +2048,492 @@ clone $C2dd3dc00 {
   xpos -1360
   ypos -2559
  }
-set N46125400 [stack 0]
- TimeOffset {
-  time_offset {{parent.seedautolinear}}
-  time ""
-  name TimeOffset5
-  label SEED
-  xpos -1360
-  ypos -1839
+set N1c759400 [stack 0]
+ Dot {
+  name Dot29
+  label _-_STYLES
+  note_font_size 40
+  xpos -1436
+  ypos -2502
+ }
+ NoOp {
+  inputs 0
+  name SB_RANDOM_NUM_GENERATORv2
+  label "_-_RATIO\n_-_Linear_Noise_C0NTROLLER 1"
+  xpos -370
+  ypos -5787
+  addUserKnob {20 User}
+  addUserKnob {7 amplitude t "total amount of amplitude \n\nthe max positive number will be this value subtracted by any negative value in offset\n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R 1 20}
+  amplitude 0.04
+  addUserKnob {7 freq R 0 10}
+  freq 1.95
+  addUserKnob {7 offset t "Used primarily to also offset into negative values \n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R -20 0}
+  offset 0.01
+  addUserKnob {7 seed R 1 1000}
+  seed 1
+  addUserKnob {7 output}
+  output {{(((random((frame+seed)/(freq*LinearFreq)))*amplitude)+offset) x36 0.095}}
+  addUserKnob {26 ""}
+  addUserKnob {26 example l "" +STARTLINE T " -100 offset and 200 amplitude will give a range of(-100 to 100)\n(((random((frame+seed)/freq))*amplitude)+offset)"}
+ }
+ NoOp {
+  inputs 0
+  name SB_RANDOM_NUM_GENERATORv1
+  label "_-_SIZE_-_Linear_Noise_C0NTROLLER 1"
+  xpos -370
+  ypos -5709
+  addUserKnob {20 User}
+  addUserKnob {7 amplitude t "total amount of amplitude \n\nthe max positive number will be this value subtracted by any negative value in offset\n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R 1 20}
+  amplitude 200
+  addUserKnob {7 freq R 0 10}
+  freq 4
+  addUserKnob {7 offset t "Used primarily to also offset into negative values \n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R -20 0}
+  offset -100
+  addUserKnob {7 seed R 1 1000}
+  seed 1
+  addUserKnob {7 output}
+  output {{(((random((frame+seed)/(freq*LinearFreq)))*amplitude)+offset) x36 0.095}}
+  addUserKnob {26 ""}
+  addUserKnob {26 example l "" +STARTLINE T " -100 offset and 200 amplitude will give a range of(-100 to 100)\n(((random((frame+seed)/freq))*amplitude)+offset)"}
+ }
+ NoOp {
+  inputs 0
+  name SB_RANDOM_NUM_GENERATORv25
+  xpos -3010
+  ypos -3783
+  addUserKnob {20 User}
+  addUserKnob {7 amplitude t "total amount of amplitude \n\nthe max positive number will be this value subtracted by any negative value in offset\n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R 1 20}
+  amplitude 700
+  addUserKnob {7 freq R 0 10}
+  freq 4
+  addUserKnob {7 offset t "Used primarily to also offset into negative values \n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R -20 0}
+  addUserKnob {7 seed R 1 1000}
+  seed 1
+  addUserKnob {7 output}
+  output {{(((random((frame+seed)/(freq*LinearFreq)))*amplitude)+offset) x36 0.095}}
+  addUserKnob {26 ""}
+  addUserKnob {26 example l "" +STARTLINE T " -100 offset and 200 amplitude will give a range of(-100 to 100)\n(((random((frame+seed)/freq))*amplitude)+offset)"}
+ }
+ NoOp {
+  inputs 0
+  name SB_RANDOM_NUM_GENERATORv3
+  label "_-_SIZE_-_Linear_Noise_C0NTROLLER 2"
+  xpos -4880
+  ypos -4677
+  addUserKnob {20 User}
+  addUserKnob {7 amplitude t "total amount of amplitude \n\nthe max positive number will be this value subtracted by any negative value in offset\n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R 1 20}
+  amplitude 1000
+  addUserKnob {7 freq R 0 10}
+  freq 4
+  addUserKnob {7 offset t "Used primarily to also offset into negative values \n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R -20 0}
+  offset -500
+  addUserKnob {7 seed R 1 1000}
+  seed 1
+  addUserKnob {7 output}
+  output {{(((random((frame+seed)/(freq*LinearFreq)))*amplitude)+offset) x36 0.095}}
+  addUserKnob {26 ""}
+  addUserKnob {26 example l "" +STARTLINE T " -100 offset and 200 amplitude will give a range of(-100 to 100)\n(((random((frame+seed)/freq))*amplitude)+offset)"}
+ }
+push $N1c7a8c00
+ ColorCorrect {
+  name ColorCorrect1
+  xpos -3560
+  ypos -5073
+ }
+push $N4523d800
+ Clamp {
+  name Clamp4
+  xpos -3340
+  ypos -4119
+ }
+set N1c707400 [stack 0]
+ Tile {
+  mirrorRows true
+  mirrorCols true
+  name Tile2
+  xpos -3670
+  ypos -4113
  }
  Dot {
-  name Dot59
-  xpos -1326
-  ypos -1806
+  name Dot68
+  xpos -3636
+  ypos -4038
  }
+push $N1c707400
+ Merge2 {
+  inputs 2
+  operation difference
+  name Merge23
+  label "\[value mix]"
+  xpos -3340
+  ypos -4047
+ }
+ Transform {
+  inputs 0
+  center {960 540}
+  motionblur 0.74
+  name Transform3
+  xpos -383
+  ypos -695
+ }
+ NoOp {
+  inputs 0
+  name SB_Random_number_gen11
+  tile_color 0x1fff00ff
+  label "# \[value output]\nlarger horizontal"
+  note_font_size 21
+  xpos -812
+  ypos -847
+  addUserKnob {20 User}
+  addUserKnob {52 a T "\tif 'Random_number_gen.knob.output' > 20\t\t\n\tprint \"big\"\n\telse:\n\tprint \"small\"\t\n\t" +STARTLINE}
+  addUserKnob {7 minm l minimum t "if no offset is used will be min number\n\nif you need a negative number use put this to 0 and your min will be offset number" R 0 10}
+  minm 90
+  addUserKnob {7 maxx l max/amount t "with no offset amount will be actual maximum\n\nit could also be thought of the total amount of range of values " R 0 100}
+  maxx 290
+  addUserKnob {7 freq l frequency R 0 10}
+  freq 3
+  addUserKnob {7 offset t "offset primarily is used to make values include negative values\n\nie. default values will return -50 to 50" R -100 100}
+  offset -82
+  addUserKnob {7 seed R 0 10000}
+  addUserKnob {26 ""}
+  addUserKnob {7 output t "returns result" R -10 10}
+  output {{"(minm + random ( seed+frame/ (freq*scnlns_freq_mstr)) * maxx) + offset" x44 0}}
+ }
+ NoOp {
+  inputs 0
+  name SB_Random_number_gen10
+  tile_color 0x1f00ffff
+  label "# \[value output]\nmedium vertical"
+  note_font_size 21
+  xpos -345
+  ypos -832
+  addUserKnob {20 User}
+  addUserKnob {52 a T "\tif 'Random_number_gen.knob.output' > 20\t\t\n\tprint \"big\"\n\telse:\n\tprint \"small\"\t\n\t" +STARTLINE}
+  addUserKnob {7 minm l minimum t "if no offset is used will be min number\n\nif you need a negative number use put this to 0 and your min will be offset number" R 0 10}
+  addUserKnob {7 maxx l max/amount t "with no offset amount will be actual maximum\n\nit could also be thought of the total amount of range of values " R 0 100}
+  maxx 100
+  addUserKnob {7 freq l frequency R 0 10}
+  freq 20
+  addUserKnob {7 offset t "offset primarily is used to make values include negative values\n\nie. default values will return -50 to 50" R -100 100}
+  offset 30
+  addUserKnob {7 seed R 0 10000}
+  addUserKnob {26 ""}
+  addUserKnob {7 output t "returns result" R -10 10}
+  output {{"(minm + random ( seed+frame/ (freq*scnlns_freq_mstr)) * maxx) + offset" x2 93.2443652 x44 0}}
+ }
+ Multiply {
+  inputs 0
+  value {{parent.scnlns_freq_mstr.main}}
+  name Multiply6
+  tile_color 0xffffff
+  label "_Scanlines Frequency Master Control"
+  xpos -551
+  ypos -673
+ }
+ NoOp {
+  inputs 0
+  name SB_Random_number_gen12
+  tile_color 0xff000000
+  label "# \[value output]\nfine vertical"
+  note_font_size 21
+  xpos -609
+  ypos -841
+  addUserKnob {20 User}
+  addUserKnob {52 a T "\tif 'Random_number_gen.knob.output' > 20\t\t\n\tprint \"big\"\n\telse:\n\tprint \"small\"\t\n\t" +STARTLINE}
+  addUserKnob {7 minm l minimum t "if no offset is used will be min number\n\nif you need a negative number use put this to 0 and your min will be offset number" R 0 10}
+  minm 0.1
+  addUserKnob {7 maxx l max/amount t "with no offset amount will be actual maximum\n\nit could also be thought of the total amount of range of values " R 0 100}
+  maxx 1
+  addUserKnob {7 freq l frequency R 0 10}
+  freq 1.95
+  addUserKnob {7 offset t "offset primarily is used to make values include negative values\n\nie. default values will return -50 to 50" R -100 100}
+  addUserKnob {7 seed R 0 10000}
+  seed 10
+  addUserKnob {26 ""}
+  addUserKnob {7 output t "returns result" R -10 10}
+  output {{"(minm + random ( seed+frame/ (freq*scnlns_freq_mstr)) * maxx) + offset" x2 0.85378973 x44 0}}
+ }
+ NoOp {
+  inputs 0
+  name SB_Random_number_gen2
+  tile_color 0xff000000
+  label "# \[value output]\nfine horizontal"
+  note_font_size 21
+  xpos -1682
+  ypos -407
+  addUserKnob {20 User}
+  addUserKnob {52 a T "\tif 'Random_number_gen.knob.output' > 20\t\t\n\tprint \"big\"\n\telse:\n\tprint \"small\"\t\n\t" +STARTLINE}
+  addUserKnob {7 minm l minimum t "if no offset is used will be min number\n\nif you need a negative number use put this to 0 and your min will be offset number" R 0 10}
+  minm 0.1
+  addUserKnob {7 maxx l max/amount t "with no offset amount will be actual maximum\n\nit could also be thought of the total amount of range of values " R 0 100}
+  maxx 1
+  addUserKnob {7 freq l frequency R 0 10}
+  freq 1.95
+  addUserKnob {7 offset t "offset primarily is used to make values include negative values\n\nie. default values will return -50 to 50" R -100 100}
+  addUserKnob {7 seed R 0 10000}
+  seed 10
+  addUserKnob {26 ""}
+  addUserKnob {7 output t "returns result" R -10 10}
+  output {{"(minm + random ( seed+frame/ (freq*scnlns_freq_mstr)) * maxx) + offset" x44 0}}
+ }
+ NoOp {
+  inputs 0
+  name SB_Random_number_gen3
+  tile_color 0x1f00ffff
+  label "# \[value output]\nmedium horizontal"
+  note_font_size 21
+  xpos -1912
+  ypos -462
+  addUserKnob {20 User}
+  addUserKnob {52 a T "\tif 'Random_number_gen.knob.output' > 20\t\t\n\tprint \"big\"\n\telse:\n\tprint \"small\"\t\n\t" +STARTLINE}
+  addUserKnob {7 minm l minimum t "if no offset is used will be min number\n\nif you need a negative number use put this to 0 and your min will be offset number" R 0 10}
+  addUserKnob {7 maxx l max/amount t "with no offset amount will be actual maximum\n\nit could also be thought of the total amount of range of values " R 0 100}
+  maxx 100
+  addUserKnob {7 freq l frequency R 0 10}
+  freq 20
+  addUserKnob {7 offset t "offset primarily is used to make values include negative values\n\nie. default values will return -50 to 50" R -100 100}
+  offset 30
+  addUserKnob {7 seed R 0 10000}
+  addUserKnob {26 ""}
+  addUserKnob {7 output t "returns result" R -10 10}
+  output {{"(minm + random ( seed+frame/ (freq*scnlns_freq_mstr)) * maxx) + offset" x44 0}}
+ }
+ NoOp {
+  inputs 0
+  name SB_Random_number_gen1
+  tile_color 0x1fff00ff
+  label "# \[value output]\nlarger vertical"
+  note_font_size 21
+  xpos -2128
+  ypos -425
+  addUserKnob {20 User}
+  addUserKnob {52 a T "\tif 'Random_number_gen.knob.output' > 20\t\t\n\tprint \"big\"\n\telse:\n\tprint \"small\"\t\n\t" +STARTLINE}
+  addUserKnob {7 minm l minimum t "if no offset is used will be min number\n\nif you need a negative number use put this to 0 and your min will be offset number" R 0 10}
+  minm 90
+  addUserKnob {7 maxx l max/amount t "with no offset amount will be actual maximum\n\nit could also be thought of the total amount of range of values " R 0 100}
+  maxx 290
+  addUserKnob {7 freq l frequency R 0 10}
+  freq 3
+  addUserKnob {7 offset t "offset primarily is used to make values include negative values\n\nie. default values will return -50 to 50" R -100 100}
+  offset -82
+  addUserKnob {7 seed R 0 10000}
+  addUserKnob {26 ""}
+  addUserKnob {7 output t "returns result" R -10 10}
+  output {{"(minm + random ( seed+frame/ (freq*scnlns_freq_mstr)) * maxx) + offset" x44 0}}
+ }
+ Expression {
+  inputs 0
+  expr0 isnan(r)
+  name Expression1
+  tile_color 0xffffff
+  label "Show Me NAN Pixels"
+  note_font_size 21
+  xpos 3990
+  ypos 2347
+ }
+ Dot {
+  inputs 0
+  name Dot57
+  label _IMporovements
+  note_font_size 40
+  xpos 2579
+  ypos 3651
+ }
+ Dot {
+  name Dot30
+  label "_make complexity for each_noise sstylea"
+  note_font_size 60
+  xpos 2579
+  ypos 3843
+ }
+ Dot {
+  name Dot66
+  label "_-_Could eplace with sliders for each with the connect to integer multiply nodes"
+  note_font_size 60
+  xpos 2579
+  ypos 4107
+ }
+ Dot {
+  name Dot58
+  label "_Add all motion data from distortion to source"
+  note_font_size 40
+  xpos 2579
+  ypos 4419
+ }
+ NoOp {
+  inputs 0
+  name SB_RANDOM_NUM_GENERATORv13
+  label "number\n"
+  xpos -225
+  ypos -3187
+  addUserKnob {20 User}
+  addUserKnob {7 amplitude t "total amount of amplitude \n\nthe max positive number will be this value subtracted by any negative value in offset\n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R 1 20}
+  amplitude 80
+  addUserKnob {7 freq R 0 10}
+  freq 3.8
+  addUserKnob {7 offset t "Used primarily to also offset into negative values \n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R -20 0}
+  addUserKnob {7 seed R 1 1000}
+  seed 135
+  addUserKnob {7 output}
+  output {{(((random((frame+seed)/(freq*GridFreq)))*amplitude)+offset) x36 0.095}}
+  addUserKnob {26 ""}
+  addUserKnob {26 example l "" +STARTLINE T " -100 offset and 200 amplitude will give a range of(-100 to 100)\n(((random((frame+seed)/freq))*amplitude)+offset)"}
+ }
+ Expression {
+  inputs 0
+  temp_name0 Rx
+  temp_expr0 SB_Random_number_gen2.output
+  temp_name1 Gy
+  temp_expr1 SB_Random_number_gen1.output
+  temp_name2 Bx
+  temp_expr2 SB_Random_number_gen3.output
+  expr0 "(sin(x/Rx) + .7)/2 "
+  expr1 "(sin(x/Gy) +.7)/2 "
+  expr2 "(sin(y/Bx) +.7)/2 "
+  name Expression3
+  label "_-_scanlines 2"
+  xpos -1910
+  ypos -303
+ }
+ Posterize {
+  Colors 2
+  name Posterize4
+  xpos -1910
+  ypos -231
+ }
+ Expression {
+  inputs 0
+  temp_name0 ffrr
+  temp_expr0 SB_Random_number_gen12.output
+  temp_name1 fgg
+  temp_expr1 SB_Random_number_gen11.output
+  temp_name2 fbb
+  temp_expr2 SB_Random_number_gen10.output
+  expr0 "(sin(x/ffrr) + .7)/2 "
+  expr1 "(sin(y/fgg) +.7)/2 "
+  expr2 "(sin(x/fbb) +.7)/2 "
+  name Expression5
+  label _-_scanlines
+  xpos -704
+  ypos -664
+ }
+ Posterize {
+  Colors 2
+  name Posterize3
+  xpos -704
+  ypos -591
+ }
+ Noise {
+  inputs 0
+  size 46
+  zoffset {{curve l x21 3.66 x44 0.58}}
+  nyquist false
+  gain 1
+  gamma 0.14
+  center {960 540}
+  name Noise2
+  note_font_size 21
+  selected true
+  xpos -901
+  ypos -1436
+ }
+set N1c6a9800 [stack 0]
+ Dot {
+  name Dot78
+  xpos -867
+  ypos -1276
+ }
+push $N7b2f1c00
+ Dot {
+  name Dot71
+  xpos -163
+  ypos -2503
+ }
+ Tile {
+  rows 2
+  mirrorRows true
+  columns 2
+  mirrorCols true
+  name Tile5
+  xpos -197
+  ypos -2431
+ }
+push $N7b2f1c00
+ Merge2 {
+  inputs 2
+  operation difference
+  name Merge33
+  label "\[value mix]"
+  xpos -197
+  ypos -2254
+ }
+set N1c6a8800 [stack 0]
+ Tile {
+  rows 2
+  mirrorRows true
+  columns 2
+  mirrorCols true
+  name Tile6
+  xpos -375
+  ypos -2248
+ }
+ Dot {
+  name Dot77
+  xpos -341
+  ypos -2151
+ }
+push $N1c6a8800
+ Merge2 {
+  inputs 2
+  operation difference
+  name Merge34
+  label "\[value mix]"
+  xpos -197
+  ypos -2093
+ }
+push $N1c6a8800
+push $N7b2f1c00
+ Dot {
+  name Dot76
+  xpos 267
+  ypos -2503
+ }
+push $N7b2f2400
+ Dot {
+  name Dot74
+  xpos 472
+  ypos -2646
+ }
+push $N7b347800
+ Dot {
+  name Dot72
+  xpos 819
+  ypos -2998
+ }
+ Dot {
+  name Dot73
+  xpos 819
+  ypos -2339
+ }
+clone $C7b197400 {
+  inputs 5
+  xpos 233
+  ypos -2004
+  selected false
+ }
+ Dot {
+  name Dot56
+  xpos 267
+  ypos -1863
+ }
+ Dot {
+  name Dot67
+  label _-_GRIDS
+  note_font_size 40
+  xpos 267
+  ypos -1839
+ }
+push $N1c759400
  Constant {
   inputs 0
   channels rgb
@@ -2288,7 +2556,7 @@ set N46125400 [stack 0]
   xpos -1326
   ypos -1614
  }
-set N46124400 [stack 0]
+set N1c645000 [stack 0]
  Dot {
   name Dot45
   note_font_size -29
@@ -2303,7 +2571,7 @@ set N46124400 [stack 0]
   xpos -1250
   ypos -1407
  }
-push $N46124400
+push $N1c645000
  Switch {
   inputs 2
   which {{parent.Grids}}
@@ -2317,7 +2585,7 @@ push $N46124400
   xpos -1326
   ypos -1326
  }
-set N460d7000 [stack 0]
+set N1c607c00 [stack 0]
  Dot {
   name Dot54
   xpos -1216
@@ -2329,9 +2597,9 @@ set N460d7000 [stack 0]
   name Merge11
   label "\[value mix]"
   xpos -1250
-  ypos -1239
+  ypos -1233
  }
-push $N460d7000
+push $N1c607c00
  Switch {
   inputs 2
   which {{parent.Noise}}
@@ -2340,7 +2608,7 @@ push $N460d7000
   xpos -1360
   ypos -1167
  }
-set N460d6400 [stack 0]
+set N1c607000 [stack 0]
  Input {
   inputs 0
   name User_Texture
@@ -2361,7 +2629,7 @@ set N460d6400 [stack 0]
   xpos -996
   ypos -1086
  }
-push $N460d6400
+push $N1c607000
  Switch {
   inputs 2
   which {{parent.userTex}}
@@ -2382,7 +2650,7 @@ push $N460d6400
   xpos -1360
   ypos -603
  }
-set N460d5000 [stack 0]
+set N1c605c00 [stack 0]
  IDistort {
   channels rgba
   uv backward
@@ -2477,6 +2745,14 @@ set N460d5000 [stack 0]
   xpos -1360
   ypos 129
  }
+ TimeOffset {
+  time_offset {{parent.seedautolinear}}
+  time ""
+  name TimeOffset5
+  label SEED
+  xpos -1360
+  ypos 177
+ }
  Dot {
   name Dot53
   label "_SCANLINES_2\n"
@@ -2487,15 +2763,15 @@ set N460d5000 [stack 0]
  Dot {
   name Dot23
   tile_color 0xffff00
-  label "_-_NOISE Pattern"
+  label "DISTORTION Pattern"
   note_font_size 90
   xpos -1326
-  ypos 282
+  ypos 396
  }
  Dot {
   name Dot24
-  xpos 214
-  ypos 282
+  xpos 388
+  ypos 396
  }
  Shuffle {
   green red
@@ -2503,33 +2779,33 @@ set N460d5000 [stack 0]
   alpha red
   name Shuffle1
   label "\[value in]"
-  xpos 180
-  ypos 345
+  xpos 354
+  ypos 489
  }
  Dot {
   name Dot13
-  xpos 214
-  ypos 378
+  xpos 388
+  ypos 532
  }
-set N46089400 [stack 0]
+set N1c5ba000 [stack 0]
  Dot {
   name Dot16
-  xpos 104
-  ypos 426
+  xpos 232
+  ypos 600
  }
-set N46089000 [stack 0]
+set N1c5b9c00 [stack 0]
  Dot {
   name Dot17
-  xpos 104
-  ypos 1914
+  xpos 232
+  ypos 2707
  }
-push $N2db17c00
-push $N46089400
+push $N45107c00
+push $N1c5ba000
  Blur {
   name horBlur1
   label "\[value size]"
-  xpos 290
-  ypos 435
+  xpos 509
+  ypos 619
  }
  DirBlurWrapper {
   BlurType linear
@@ -2538,21 +2814,21 @@ push $N46089400
   BlurLength 2
   BlurAngle 90
   name horDirBlurWrapper1
-  xpos 290
-  ypos 513
+  xpos 509
+  ypos 727
  }
  Dot {
   name Dot12
-  xpos 324
-  ypos 570
+  xpos 543
+  ypos 804
  }
-set N4603bc00 [stack 0]
-push $N46089400
+set N1c5b8c00 [stack 0]
+push $N1c5ba000
  Blur {
   name vertBlur4
   label "\[value size]"
-  xpos 180
-  ypos 459
+  xpos 354
+  ypos 653
  }
  DirBlurWrapper {
   BlurType linear
@@ -2561,96 +2837,96 @@ push $N46089400
   BlurLength {{curve x71 0 x80 200}}
   BlurAngle 180
   name vertDirBlurWrapper2
-  xpos 180
-  ypos 609
+  xpos 354
+  ypos 863
  }
  Dot {
   name Dot18
-  xpos 214
-  ypos 714
+  xpos 388
+  ypos 1008
  }
-set N4603b000 [stack 0]
+set N1c55fc00 [stack 0]
  Dot {
   name Dot25
-  xpos 214
-  ypos 810
+  xpos 388
+  ypos 1144
  }
-set N4603ac00 [stack 0]
+set N1c55f800 [stack 0]
  Dot {
   name Dot4
-  xpos 214
-  ypos 882
+  xpos 388
+  ypos 1246
  }
-set N4603a800 [stack 0]
+set N1c55f400 [stack 0]
  Dot {
   name Dot50
-  xpos 214
-  ypos 1026
+  xpos 388
+  ypos 1450
  }
-set N4603a400 [stack 0]
+set N1c55f000 [stack 0]
  Constant {
   inputs 0
   color 1
   name Constant1
-  xpos 510
-  ypos 1215
+  xpos 821
+  ypos 1729
  }
  Switch {
   inputs 2
   which {{parent.mskRBpattern}}
   name Switch10
   label "R/B Pattern Mask"
-  xpos 510
-  ypos 1281
+  xpos 821
+  ypos 1815
  }
-set N46039c00 [stack 0]
-push $N4603a400
-push $N4603b000
-push $N4603bc00
+set N1c55e800 [stack 0]
+push $N1c55f000
+push $N1c55fc00
+push $N1c5b8c00
  Dot {
   name Dot6
-  xpos 324
-  ypos 570
+  xpos 543
+  ypos 804
  }
  Dot {
   name Dot7
-  xpos 544
-  ypos 570
+  xpos 855
+  ypos 804
  }
-set N46039400 [stack 0]
-push $N46039400
+set N1c55e000 [stack 0]
+push $N1c55e000
  Dot {
   name Dot15
-  xpos 544
-  ypos 498
+  xpos 855
+  ypos 702
  }
  Invert {
   name Invert1
-  xpos 840
-  ypos 489
+  xpos 1288
+  ypos 693
  }
  Switch {
   inputs 2
   which {{parent.mirrored}}
   name Switch2
-  xpos 840
-  ypos 567
+  xpos 1288
+  ypos 801
  }
-set N46038800 [stack 0]
-push $N769e0400
+set N1c55d400 [stack 0]
+push $N44a30400
  Grade {
   white {0 0 1 1}
   black_clamp false
   name Grade3
   label B
-  xpos 730
-  ypos 201
+  xpos 1132
+  ypos 285
  }
  Blur {
   name Blur3
   label "\[value size]"
-  xpos 730
-  ypos 219
+  xpos 1132
+  ypos 313
  }
  Transform {
   translate {{parent.Transform1.translate*-1} {parent.Transform1.translate*-1}}
@@ -2659,8 +2935,8 @@ push $N769e0400
   shutter {{parent.Transform1.shutter}}
   shutteroffset centred
   name Transform2
-  xpos 730
-  ypos 327
+  xpos 1132
+  ypos 461
  }
  Transform {
   translate {{parent.Transform7.translate*-1} {parent.Transform7.translate*-1}}
@@ -2669,13 +2945,13 @@ push $N769e0400
   shutter {{parent.Transform1.shutter}}
   shutteroffset centred
   name Transform6
-  xpos 730
-  ypos 399
+  xpos 1132
+  ypos 563
  }
  Dot {
   name Dot43
-  xpos 764
-  ypos 618
+  xpos 1166
+  ypos 872
  }
  Copy {
   inputs 2
@@ -2683,8 +2959,8 @@ push $N769e0400
   to0 forward.u
   from1 -rgba.alpha
   name Copy2
-  xpos 840
-  ypos 681
+  xpos 1288
+  ypos 965
  }
  IDistort {
   channels rgba
@@ -2692,8 +2968,8 @@ push $N769e0400
   uv_scale {{parent.IDistort1.uv_scale*-1 i}}
   filter Rifman
   name IDistort2
-  xpos 730
-  ypos 687
+  xpos 1132
+  ypos 971
  }
  IDistort {
   channels rgba
@@ -2701,18 +2977,18 @@ push $N769e0400
   uv_scale {{parent.horuniformchaos x1 0 186 100 100 0}}
   filter Rifman
   name IDistort5
-  xpos 730
-  ypos 735
+  xpos 1132
+  ypos 1039
  }
- set C45fe6400 [stack 0]
+ set C1c513000 [stack 0]
  Copy {
   inputs 2
   from0 -rgba.alpha
   from1 rgba.alpha
   to1 forward.v
   name Copy3
-  xpos 730
-  ypos 987
+  xpos 1132
+  ypos 1401
  }
  IDistort {
   uv {-forward.u forward.v}
@@ -2720,30 +2996,30 @@ push $N769e0400
   filter Rifman
   name IDistort6
   label "Uniform Vertical Chaos"
-  xpos 730
-  ypos 1083
+  xpos 1132
+  ypos 1537
  }
- set C45fe5c00 [stack 0]
-set N45fe5c00 [stack 0]
+ set C1c512800 [stack 0]
+set N1c512800 [stack 0]
  Copy {
   inputs 2
   from0 -rgba.alpha
   from1 rgba.alpha
   to1 forward.v
   name Copy10
-  xpos 840
-  ypos 1299
+  xpos 1288
+  ypos 1843
  }
-push $N45fe5c00
+push $N1c512800
  Switch {
   inputs 2
   which {{parent.NoStackedDistorts}}
   name Switch11
   label "no double distorts"
-  xpos 730
-  ypos 1305
+  xpos 1132
+  ypos 1849
  }
- set C45fe5400 [stack 0]
+ set C1c512000 [stack 0]
  IDistort {
   inputs 1+1
   channels rgba
@@ -2751,8 +3027,8 @@ push $N45fe5c00
   uv_scale {{parent.IDistort3.uv_scale*-1 x18 6.5}}
   filter Rifman
   name IDistort4
-  xpos 730
-  ypos 1431
+  xpos 1132
+  ypos 2025
  }
  DirBlurWrapper {
   inputs 1+1
@@ -2761,54 +3037,54 @@ push $N45fe5c00
   BlurLength 0
   BlurAngle 90
   name horDirBlurWrapper3
-  xpos 730
-  ypos 1521
+  xpos 1132
+  ypos 2155
  }
  Dot {
   name Dot2
-  xpos 764
-  ypos 1938
+  xpos 1166
+  ypos 2741
  }
-push $N4603bc00
+push $N1c5b8c00
  Constant {
   inputs 0
   color 1
   name Constant2
-  xpos 180
-  ypos 1719
+  xpos 354
+  ypos 2442
  }
  Switch {
   inputs 2
   which {{parent.maskredbypattern}}
   name Switch6
-  xpos 290
-  ypos 1743
+  xpos 509
+  ypos 2466
  }
-push $N46039c00
-push $N4603a400
-push $N4603a800
-push $N46038800
-push $N769e0800
+push $N1c55e800
+push $N1c55f000
+push $N1c55f400
+push $N1c55d400
+push $N44a30800
  Dot {
   name Dot5
-  xpos 434
-  ypos -30
+  xpos 699
+  ypos -46
  }
  Grade {
   white {1 0 0 1}
   black_clamp false
   name Grade1
   label R
-  xpos 400
-  ypos 201
+  xpos 665
+  ypos 285
  }
  Transform {
   translate {{parent.rb_offset} 0}
   center {1024 778}
   shutteroffset centred
   name Transform1
-  xpos 400
-  ypos 303
+  xpos 665
+  ypos 427
  }
  Transform {
   translate {{parent.rgoffset} 0}
@@ -2817,8 +3093,8 @@ push $N769e0800
   shutter {{parent.Transform1.shutter}}
   shutteroffset centred
   name Transform4
-  xpos 400
-  ypos 375
+  xpos 665
+  ypos 529
  }
  Copy {
   inputs 2
@@ -2826,8 +3102,8 @@ push $N769e0800
   to0 forward.u
   from1 -rgba.alpha
   name Copy1
-  xpos 400
-  ypos 609
+  xpos 665
+  ypos 863
  }
  IDistort {
   channels rgba
@@ -2835,12 +3111,12 @@ push $N769e0800
   uv_scale {{parent.Multiply2.value}}
   filter Rifman
   name IDistort1
-  xpos 400
-  ypos 687
+  xpos 665
+  ypos 971
  }
-clone $C45fe6400 {
-  xpos 400
-  ypos 735
+clone $C1c513000 {
+  xpos 665
+  ypos 1039
   selected false
  }
  Copy {
@@ -2849,29 +3125,29 @@ clone $C45fe6400 {
   from1 rgba.alpha
   to1 forward.v
   name Copy4
-  xpos 400
-  ypos 987
+  xpos 665
+  ypos 1401
  }
-clone $C45fe5c00 {
-  xpos 400
-  ypos 1083
+clone $C1c512800 {
+  xpos 665
+  ypos 1537
   selected false
  }
-set N45f7d800 [stack 0]
+set N1c4b2400 [stack 0]
  Copy {
   inputs 2
   from0 -rgba.alpha
   from1 rgba.alpha
   to1 forward.v
   name Copy9
-  xpos 180
-  ypos 1275
+  xpos 354
+  ypos 1809
  }
-push $N45f7d800
-clone $C45fe5400 {
+push $N1c4b2400
+clone $C1c512000 {
   inputs 2
-  xpos 400
-  ypos 1305
+  xpos 665
+  ypos 1849
   selected false
  }
  IDistort {
@@ -2881,8 +3157,8 @@ clone $C45fe5400 {
   uv_scale {{parent.SB_RANDOM_NUM_GENERATORv8.output}}
   filter Rifman
   name IDistort3
-  xpos 400
-  ypos 1431
+  xpos 665
+  ypos 2025
  }
  DirBlurWrapper {
   inputs 1+1
@@ -2892,30 +3168,30 @@ clone $C45fe5400 {
   BlurLength {{curve x44 0 x51 0 x63 200 x71 0}}
   BlurAngle {{parent.horDirBlurWrapper1.BlurAngle}}
   name horDirBlurWrapper2
-  xpos 400
-  ypos 1785
+  xpos 665
+  ypos 2528
  }
  Dot {
   name Dot3
-  xpos 434
-  ypos 1890
+  xpos 699
+  ypos 2673
  }
-push $N4603ac00
-push $N46038800
-push $N769e0800
+push $N1c55f800
+push $N1c55d400
+push $N44a30800
  Grade {
   white {0 1 0 1}
   black_clamp false
   name Grade2
   label G
-  xpos 620
-  ypos 201
+  xpos 977
+  ypos 285
  }
  Blur {
   name Blur2
   label "\[value size]"
-  xpos 620
-  ypos 219
+  xpos 977
+  ypos 313
  }
  Transform {
   translate {{parent.Transform4.translate*-1} {parent.Transform4.translate*-1}}
@@ -2924,8 +3200,8 @@ push $N769e0800
   shutter {{parent.Transform1.shutter}}
   shutteroffset centred
   name Transform5
-  xpos 620
-  ypos 327
+  xpos 977
+  ypos 461
  }
  Transform {
   translate {{parent.gboffest} 0}
@@ -2934,8 +3210,8 @@ push $N769e0800
   shutter {{parent.Transform1.shutter}}
   shutteroffset centred
   name Transform7
-  xpos 620
-  ypos 399
+  xpos 977
+  ypos 563
  }
  Copy {
   inputs 2
@@ -2943,12 +3219,12 @@ push $N769e0800
   to0 forward.u
   from1 -rgba.alpha
   name Copy5
-  xpos 620
-  ypos 633
+  xpos 977
+  ypos 897
  }
-clone $C45fe6400 {
-  xpos 620
-  ypos 735
+clone $C1c513000 {
+  xpos 977
+  ypos 1039
   selected false
  }
  Copy {
@@ -2957,102 +3233,102 @@ clone $C45fe6400 {
   from1 rgba.alpha
   to1 forward.v
   name Copy6
-  xpos 620
-  ypos 987
+  xpos 977
+  ypos 1401
  }
-clone $C45fe5c00 {
-  xpos 620
-  ypos 1083
+clone $C1c512800 {
+  xpos 977
+  ypos 1537
   selected false
  }
  Merge2 {
   inputs 2
   operation plus
   name Merge1
-  xpos 620
-  ypos 1887
+  xpos 977
+  ypos 2670
  }
  Merge2 {
   inputs 2
   operation plus
   name Merge2
-  xpos 620
-  ypos 1935
+  xpos 977
+  ypos 2738
  }
  Dot {
   name Dot47
-  xpos 654
-  ypos 2034
+  xpos 1011
+  ypos 2877
  }
-set N45f19400 [stack 0]
+set N1d432000 [stack 0]
  Merge2 {
   inputs 2
   operation under
   name Merge3
   label "\[value mix]\n"
-  xpos 1060
-  ypos 2049
+  xpos 1600
+  ypos 2902
  }
-push $N45f19400
+push $N1d432000
  Switch {
   inputs 2
   which {{parent.over}}
   name Switch1
-  xpos 620
-  ypos 2127
+  xpos 977
+  ypos 3010
  }
  Switch {
   inputs 2
   which {{parent.viewchaospattern i}}
   name Switch4
-  xpos 620
-  ypos 2247
+  xpos 977
+  ypos 3180
  }
  Dot {
   name Dot46
-  xpos 654
-  ypos 2250
+  xpos 1011
+  ypos 3183
  }
-set N45f18400 [stack 0]
+set N1d431000 [stack 0]
  TimeBlur {
   divisions 1
   shutteroffset centred
   shuttercustomoffset 0
   name TimeBlur1
-  xpos 730
-  ypos 2295
+  xpos 1132
+  ypos 3248
  }
-push $N45f18400
+push $N1d431000
  Merge2 {
   inputs 2
   mix 0
   name Merge25
   label "\[value mix]"
-  xpos 620
-  ypos 2361
+  xpos 977
+  ypos 3344
  }
-set N46eab800 [stack 0]
-push $N46089000
+set N1d430800 [stack 0]
+push $N1c5b9c00
  Dot {
   name Dot44
-  xpos -226
-  ypos 426
+  xpos -235
+  ypos 600
  }
  Constant {
   inputs 0
   color 1
   name Constant4
-  xpos 510
-  ypos 2247
+  xpos 821
+  ypos 3190
  }
  Switch {
   inputs 2
   which {{parent.MoBlurChaosMask}}
   name Switch15
-  xpos -260
-  ypos 2271
+  xpos -269
+  ypos 3214
  }
-push $N46eab800
+push $N1d430800
  VectorGenerator {
   smoothnessLocal 0.01
   vectorDetailReg 0.175
@@ -3062,8 +3338,8 @@ push $N46eab800
   weightGreen 0.3
   weightBlue 0.3
   name VectorGenerator1
-  xpos 290
-  ypos 2361
+  xpos 509
+  ypos 3344
  }
  VectorBlur2 {
   inputs 1+1
@@ -3073,246 +3349,112 @@ push $N46eab800
   scale {{parent.Amount}}
   blur_inside false
   name VectorBlur1
-  xpos 290
-  ypos 2409
+  xpos 509
+  ypos 3412
  }
  Dot {
   name Dot48
-  xpos 324
-  ypos 2466
+  xpos 543
+  ypos 3489
  }
-set N46ea9c00 [stack 0]
-push $N46eab800
+set N1d3ce800 [stack 0]
+push $N1d430800
  Merge2 {
   inputs 2
   operation minus
   name Merge7
   label "\[value mix]"
-  xpos 290
-  ypos 2505
+  xpos 509
+  ypos 3548
  }
  Merge2 {
   inputs 2
   name Merge8
   label "\[value mix]"
-  xpos 290
-  ypos 2601
+  xpos 509
+  ypos 3684
  }
-push $N46ea9c00
+push $N1d3ce800
  Dot {
   name Dot49
-  xpos 104
-  ypos 2466
+  xpos 232
+  ypos 3489
  }
  Switch {
   inputs 2
   which {{parent.onlyedges}}
   name Switch9
   label "_-_bLUR eDGES oNLY"
-  xpos 70
-  ypos 2673
+  xpos 198
+  ypos 3786
  }
-push $N46eab800
+push $N1d430800
  Switch {
   inputs 2
   which {{parent.Expensive_Motion_Blur}}
   name Switch7
   label Expensive_Motion_Blur
-  xpos 620
-  ypos 2721
+  xpos 977
+  ypos 3854
  }
-set N46ea8800 [stack 0]
-push $N2db17c00
+set N1d3cd400 [stack 0]
+push $N45107c00
  Dot {
   name Dot8
-  xpos 1314
-  ypos -30
+  xpos 1945
+  ypos -46
  }
  Blur {
   name Blur1
   label "\[value size]"
-  xpos 1280
-  ypos 1995
+  xpos 1911
+  ypos 2828
  }
  Merge2 {
   inputs 2
   operation minus
   name Merge4
-  xpos 1280
-  ypos 2727
+  xpos 1911
+  ypos 3860
  }
-push $N769e0c00
+push $N44a30c00
  Dot {
   name Dot34
-  xpos 984
-  ypos -126
- }
- Dot {
-  name Dot33
-  xpos 984
-  ypos 1986
+  xpos 1478
+  ypos -181
  }
  Dot {
   name Dot19
-  xpos 984
-  ypos 2562
+  xpos 1478
+  ypos 3625
  }
-push $N46ea8800
+push $N1d3cd400
  Merge2 {
   inputs 2
   operation average
   mix {{parent.layeroriginal}}
   name Merge24
   label "\[value mix]"
-  xpos 620
-  ypos 2817
+  xpos 977
+  ypos 3990
  }
  Switch {
   inputs 2
   which {{parent.effectonly}}
   name Switch3
   label "_-_EFFECT ONLY"
-  xpos 620
-  ypos 2937
+  xpos 977
+  ypos 4160
  }
  Output {
   name Output1
-  xpos 620
-  ypos 3063
+  xpos 977
+  ypos 4351
  }
-push $N46125400
- Dot {
-  name Dot29
-  label _-_STYLES
-  note_font_size 40
-  xpos -1436
-  ypos -2502
- }
- NoOp {
-  inputs 0
-  name SB_RANDOM_NUM_GENERATORv2
-  label "_-_RATIO\n_-_Linear_Noise_C0NTROLLER 1"
-  xpos -370
-  ypos -5787
-  addUserKnob {20 User}
-  addUserKnob {7 amplitude t "total amount of amplitude \n\nthe max positive number will be this value subtracted by any negative value in offset\n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R 1 20}
-  amplitude 0.04
-  addUserKnob {7 freq R 0 10}
-  freq 1.95
-  addUserKnob {7 offset t "Used primarily to also offset into negative values \n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R -20 0}
-  offset 0.01
-  addUserKnob {7 seed R 1 1000}
-  seed 1
-  addUserKnob {7 output}
-  output {{(((random((frame+seed)/(freq*LinearFreq)))*amplitude)+offset) x36 0.095}}
-  addUserKnob {26 ""}
-  addUserKnob {26 example l "" +STARTLINE T " -100 offset and 200 amplitude will give a range of(-100 to 100)\n(((random((frame+seed)/freq))*amplitude)+offset)"}
- }
- NoOp {
-  inputs 0
-  name SB_RANDOM_NUM_GENERATORv1
-  label "_-_SIZE_-_Linear_Noise_C0NTROLLER 1"
-  xpos -370
-  ypos -5709
-  addUserKnob {20 User}
-  addUserKnob {7 amplitude t "total amount of amplitude \n\nthe max positive number will be this value subtracted by any negative value in offset\n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R 1 20}
-  amplitude 200
-  addUserKnob {7 freq R 0 10}
-  freq 4
-  addUserKnob {7 offset t "Used primarily to also offset into negative values \n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R -20 0}
-  offset -100
-  addUserKnob {7 seed R 1 1000}
-  seed 1
-  addUserKnob {7 output}
-  output {{(((random((frame+seed)/(freq*LinearFreq)))*amplitude)+offset) x36 0.095}}
-  addUserKnob {26 ""}
-  addUserKnob {26 example l "" +STARTLINE T " -100 offset and 200 amplitude will give a range of(-100 to 100)\n(((random((frame+seed)/freq))*amplitude)+offset)"}
- }
- NoOp {
-  inputs 0
-  name SB_RANDOM_NUM_GENERATORv25
-  xpos -3010
-  ypos -3783
-  addUserKnob {20 User}
-  addUserKnob {7 amplitude t "total amount of amplitude \n\nthe max positive number will be this value subtracted by any negative value in offset\n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R 1 20}
-  amplitude 700
-  addUserKnob {7 freq R 0 10}
-  freq 4
-  addUserKnob {7 offset t "Used primarily to also offset into negative values \n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R -20 0}
-  addUserKnob {7 seed R 1 1000}
-  seed 1
-  addUserKnob {7 output}
-  output {{(((random((frame+seed)/(freq*LinearFreq)))*amplitude)+offset) x36 0.095}}
-  addUserKnob {26 ""}
-  addUserKnob {26 example l "" +STARTLINE T " -100 offset and 200 amplitude will give a range of(-100 to 100)\n(((random((frame+seed)/freq))*amplitude)+offset)"}
- }
- NoOp {
-  inputs 0
-  name SB_RANDOM_NUM_GENERATORv3
-  label "_-_SIZE_-_Linear_Noise_C0NTROLLER 2"
-  xpos -4880
-  ypos -4677
-  addUserKnob {20 User}
-  addUserKnob {7 amplitude t "total amount of amplitude \n\nthe max positive number will be this value subtracted by any negative value in offset\n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R 1 20}
-  amplitude 1000
-  addUserKnob {7 freq R 0 10}
-  freq 4
-  addUserKnob {7 offset t "Used primarily to also offset into negative values \n\nfor instance -100 offset and 200 amplitude\nwill give a range of -100 to 100" R -20 0}
-  offset -500
-  addUserKnob {7 seed R 1 1000}
-  seed 1
-  addUserKnob {7 output}
-  output {{(((random((frame+seed)/(freq*LinearFreq)))*amplitude)+offset) x36 0.095}}
-  addUserKnob {26 ""}
-  addUserKnob {26 example l "" +STARTLINE T " -100 offset and 200 amplitude will give a range of(-100 to 100)\n(((random((frame+seed)/freq))*amplitude)+offset)"}
- }
-push $N46178c00
- ColorCorrect {
-  name ColorCorrect1
-  xpos -3560
-  ypos -5073
- }
-push $N2dbb9800
- Clamp {
-  name Clamp4
-  xpos -3340
-  ypos -4119
- }
-set N46e58400 [stack 0]
- Tile {
-  mirrorRows true
-  mirrorCols true
-  name Tile2
-  xpos -3670
-  ypos -4113
- }
- Dot {
-  name Dot68
-  xpos -3636
-  ypos -4038
- }
-push $N46e58400
- Merge2 {
-  inputs 2
-  operation difference
-  name Merge23
-  label "\[value mix]"
-  xpos -3340
-  ypos -4047
- }
-push $N460d5000
- Multiply {
-  inputs 0
-  value {{parent.scnlns_freq_mstr.main}}
-  name Multiply6
-  tile_color 0xffffff
-  label "_Scanlines Frequency Master Control"
-  xpos -551
-  ypos -673
- }
+push $N1c605c00
+push $N1c6a9800
  Viewer {
   inputs 2
-  frame 292
   frame_range 2-58
   frame_range_lock true
   full_frame_processing true
@@ -3321,151 +3463,19 @@ push $N460d5000
     }
   input_process false
   name Viewer1
-  xpos 620
-  ypos 3135
+  xpos 832
+  ypos 4381
  }
- Transform {
-  inputs 0
-  center {960 540}
-  motionblur 0.74
-  name Transform3
-  xpos -383
-  ypos -695
+push $N1c6a9800
+ Dot {
+  name Dot33
+  xpos -569
+  ypos -1427
  }
- NoOp {
-  inputs 0
-  name SB_Random_number_gen11
-  tile_color 0x1fff00ff
-  label "# \[value output]\nlarger horizontal"
-  note_font_size 21
-  xpos -812
-  ypos -847
-  addUserKnob {20 User}
-  addUserKnob {52 a T "\tif 'Random_number_gen.knob.output' > 20\t\t\n\tprint \"big\"\n\telse:\n\tprint \"small\"\t\n\t" +STARTLINE}
-  addUserKnob {7 minm l minimum t "if no offset is used will be min number\n\nif you need a negative number use put this to 0 and your min will be offset number" R 0 10}
-  minm 90
-  addUserKnob {7 maxx l max/amount t "with no offset amount will be actual maximum\n\nit could also be thought of the total amount of range of values " R 0 100}
-  maxx 290
-  addUserKnob {7 freq l frequency R 0 10}
-  freq 3
-  addUserKnob {7 offset t "offset primarily is used to make values include negative values\n\nie. default values will return -50 to 50" R -100 100}
-  offset -82
-  addUserKnob {7 seed R 0 10000}
-  addUserKnob {26 ""}
-  addUserKnob {7 output t "returns result" R -10 10}
-  output {{"(minm + random ( seed+frame/ (freq*scnlns_freq_mstr)) * maxx) + offset" x44 0}}
- }
- NoOp {
-  inputs 0
-  name SB_Random_number_gen10
-  tile_color 0x1f00ffff
-  label "# \[value output]\nmedium vertical"
-  note_font_size 21
-  xpos -345
-  ypos -832
-  addUserKnob {20 User}
-  addUserKnob {52 a T "\tif 'Random_number_gen.knob.output' > 20\t\t\n\tprint \"big\"\n\telse:\n\tprint \"small\"\t\n\t" +STARTLINE}
-  addUserKnob {7 minm l minimum t "if no offset is used will be min number\n\nif you need a negative number use put this to 0 and your min will be offset number" R 0 10}
-  addUserKnob {7 maxx l max/amount t "with no offset amount will be actual maximum\n\nit could also be thought of the total amount of range of values " R 0 100}
-  maxx 100
-  addUserKnob {7 freq l frequency R 0 10}
-  freq 20
-  addUserKnob {7 offset t "offset primarily is used to make values include negative values\n\nie. default values will return -50 to 50" R -100 100}
-  offset 30
-  addUserKnob {7 seed R 0 10000}
-  addUserKnob {26 ""}
-  addUserKnob {7 output t "returns result" R -10 10}
-  output {{"(minm + random ( seed+frame/ (freq*scnlns_freq_mstr)) * maxx) + offset" x2 93.2443652 x44 0}}
- }
- NoOp {
-  inputs 0
-  name SB_Random_number_gen12
-  tile_color 0xff000000
-  label "# \[value output]\nfine vertical"
-  note_font_size 21
-  xpos -609
-  ypos -841
-  addUserKnob {20 User}
-  addUserKnob {52 a T "\tif 'Random_number_gen.knob.output' > 20\t\t\n\tprint \"big\"\n\telse:\n\tprint \"small\"\t\n\t" +STARTLINE}
-  addUserKnob {7 minm l minimum t "if no offset is used will be min number\n\nif you need a negative number use put this to 0 and your min will be offset number" R 0 10}
-  minm 0.1
-  addUserKnob {7 maxx l max/amount t "with no offset amount will be actual maximum\n\nit could also be thought of the total amount of range of values " R 0 100}
-  maxx 1
-  addUserKnob {7 freq l frequency R 0 10}
-  freq 1.95
-  addUserKnob {7 offset t "offset primarily is used to make values include negative values\n\nie. default values will return -50 to 50" R -100 100}
-  addUserKnob {7 seed R 0 10000}
-  seed 10
-  addUserKnob {26 ""}
-  addUserKnob {7 output t "returns result" R -10 10}
-  output {{"(minm + random ( seed+frame/ (freq*scnlns_freq_mstr)) * maxx) + offset" x2 0.85378973 x44 0}}
- }
- NoOp {
-  inputs 0
-  name SB_Random_number_gen2
-  tile_color 0xff000000
-  label "# \[value output]\nfine horizontal"
-  note_font_size 21
-  xpos -1682
-  ypos -407
-  addUserKnob {20 User}
-  addUserKnob {52 a T "\tif 'Random_number_gen.knob.output' > 20\t\t\n\tprint \"big\"\n\telse:\n\tprint \"small\"\t\n\t" +STARTLINE}
-  addUserKnob {7 minm l minimum t "if no offset is used will be min number\n\nif you need a negative number use put this to 0 and your min will be offset number" R 0 10}
-  minm 0.1
-  addUserKnob {7 maxx l max/amount t "with no offset amount will be actual maximum\n\nit could also be thought of the total amount of range of values " R 0 100}
-  maxx 1
-  addUserKnob {7 freq l frequency R 0 10}
-  freq 1.95
-  addUserKnob {7 offset t "offset primarily is used to make values include negative values\n\nie. default values will return -50 to 50" R -100 100}
-  addUserKnob {7 seed R 0 10000}
-  seed 10
-  addUserKnob {26 ""}
-  addUserKnob {7 output t "returns result" R -10 10}
-  output {{"(minm + random ( seed+frame/ (freq*scnlns_freq_mstr)) * maxx) + offset" x44 0}}
- }
- NoOp {
-  inputs 0
-  name SB_Random_number_gen3
-  tile_color 0x1f00ffff
-  label "# \[value output]\nmedium horizontal"
-  note_font_size 21
-  xpos -1912
-  ypos -462
-  addUserKnob {20 User}
-  addUserKnob {52 a T "\tif 'Random_number_gen.knob.output' > 20\t\t\n\tprint \"big\"\n\telse:\n\tprint \"small\"\t\n\t" +STARTLINE}
-  addUserKnob {7 minm l minimum t "if no offset is used will be min number\n\nif you need a negative number use put this to 0 and your min will be offset number" R 0 10}
-  addUserKnob {7 maxx l max/amount t "with no offset amount will be actual maximum\n\nit could also be thought of the total amount of range of values " R 0 100}
-  maxx 100
-  addUserKnob {7 freq l frequency R 0 10}
-  freq 20
-  addUserKnob {7 offset t "offset primarily is used to make values include negative values\n\nie. default values will return -50 to 50" R -100 100}
-  offset 30
-  addUserKnob {7 seed R 0 10000}
-  addUserKnob {26 ""}
-  addUserKnob {7 output t "returns result" R -10 10}
-  output {{"(minm + random ( seed+frame/ (freq*scnlns_freq_mstr)) * maxx) + offset" x44 0}}
- }
- NoOp {
-  inputs 0
-  name SB_Random_number_gen1
-  tile_color 0x1fff00ff
-  label "# \[value output]\nlarger vertical"
-  note_font_size 21
-  xpos -2128
-  ypos -425
-  addUserKnob {20 User}
-  addUserKnob {52 a T "\tif 'Random_number_gen.knob.output' > 20\t\t\n\tprint \"big\"\n\telse:\n\tprint \"small\"\t\n\t" +STARTLINE}
-  addUserKnob {7 minm l minimum t "if no offset is used will be min number\n\nif you need a negative number use put this to 0 and your min will be offset number" R 0 10}
-  minm 90
-  addUserKnob {7 maxx l max/amount t "with no offset amount will be actual maximum\n\nit could also be thought of the total amount of range of values " R 0 100}
-  maxx 290
-  addUserKnob {7 freq l frequency R 0 10}
-  freq 3
-  addUserKnob {7 offset t "offset primarily is used to make values include negative values\n\nie. default values will return -50 to 50" R -100 100}
-  offset -82
-  addUserKnob {7 seed R 0 10000}
-  addUserKnob {26 ""}
-  addUserKnob {7 output t "returns result" R -10 10}
-  output {{"(minm + random ( seed+frame/ (freq*scnlns_freq_mstr)) * maxx) + offset" x44 0}}
+ Mirror2 {
+  flip true
+  name Mirror2_13
+  xpos -603
+  ypos -1375
  }
 end_group
